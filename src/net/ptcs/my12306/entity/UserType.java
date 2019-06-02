@@ -1,12 +1,10 @@
-package net.neuedu.my12306.entity;
-
+package net.ptcs.my12306.entity;
 /**
- * 证件类型
+ * 用户类型实体类
  * @author hp
  *
  */
-public class CertType {
-	
+public class UserType {
 	private Integer id;
 	private String content;
 	
@@ -22,20 +20,18 @@ public class CertType {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public CertType(Integer id, String content) {
+	public UserType(Integer id, String content) {
 		super();
 		this.id = id;
 		this.content = content;
 	}
-	public CertType() {
+	public UserType() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String toString() {
-		return "CertType [id=" + id + ", content=" + content + "]";
+		return "UserType [id=" + id + ", content=" + content + "]";
 	}
 	
-	
-
 }

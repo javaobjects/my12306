@@ -1,7 +1,7 @@
 package net.neuedu.my12306.service;
 
-import net.neuedu.my12306.dao.UsersDao;
-import net.neuedu.my12306.entity.Users;
+import net.ptcs.my12306.dao.UsersDao;
+import net.ptcs.my12306.entity.Users;
 
 public class UserService {
 	

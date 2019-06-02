@@ -1,10 +1,10 @@
-package net.neuedu.my12306.dao;
+package net.ptcs.my12306.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import net.neuedu.my12306.entity.Users;
-import net.neuedu.my12306.util.DBUtils;
+import net.ptcs.my12306.entity.Users;
+import net.ptcs.my12306.util.DBUtils;
 
 public class UsersDao {
 

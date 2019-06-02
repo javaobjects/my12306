@@ -1,4 +1,4 @@
-package net.neuedu.my12306.util;
+package net.ptcs.my12306.util;
 
 import java.io.IOException;
 import java.io.InputStream;

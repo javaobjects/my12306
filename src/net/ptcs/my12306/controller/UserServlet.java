@@ -1,4 +1,4 @@
-package net.neuedu.my12306.controller;
+package net.ptcs.my12306.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.neuedu.my12306.entity.Users;
 import net.neuedu.my12306.service.UserService;
+import net.ptcs.my12306.entity.Users;
 
 /**
  * Servlet implementation class UserServlet

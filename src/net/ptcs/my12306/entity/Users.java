@@ -1,4 +1,4 @@
-package net.neuedu.my12306.entity;
+package net.ptcs.my12306.entity;
 
 import java.util.Date;
 
