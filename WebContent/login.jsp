@@ -10,7 +10,7 @@
 	function UserRegistration(){
 	
 	
-	window.navigate("UserRegistration.html");
+	window.navigate("user_register.jsp");
 	
 	}
 </script>
