@@ -38,3 +38,4 @@ index.jsp的framest下的frame的top.jsp路径不对
     <frame src="<%=request.getContextPath() %>/user/left.jsp" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" title="leftFrame">
     <frame src="<%=request.getContextPath() %>/user/main.jsp" name="mainFrame" id="mainFrame" title="mainFrame">
 ```
+ 

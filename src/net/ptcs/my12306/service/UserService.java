@@ -1,4 +1,4 @@
-package net.neuedu.my12306.service;
+package net.ptcs.my12306.service;
 
 import net.ptcs.my12306.dao.UsersDao;
 import net.ptcs.my12306.entity.Users;

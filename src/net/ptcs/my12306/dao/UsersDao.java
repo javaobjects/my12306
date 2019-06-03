@@ -95,7 +95,16 @@ public class UsersDao {
 				user.setPassword(rs.getString("password"));
 				user.setRule(rs.getString("rule"));
 				user.setRealname(rs.getString("realname"));
-				//补全另外10个数据
+//				user.setSex(rs.getString("sex"));//Character类型不会转换
+//				user.setCity(rs.get("city"));//引用类型不会转换
+//				user.setCerttype(rs.get("cert_type"));
+				user.setCert(rs.getString("cert"));
+				user.setBirthday(rs.getDate("birthday"));
+//				user.setUsertype(rs.get("user_type"));
+				user.setContent(rs.getString("content"));
+//				user.setStatus(rs.get("status"));
+				user.setLoginIp(rs.getString("login_ip"));
+				user.setImagePath(rs.getString("image_path"));
 			}
 
 		} catch (Exception e) {
