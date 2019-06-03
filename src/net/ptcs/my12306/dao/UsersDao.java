@@ -2,6 +2,7 @@ package net.ptcs.my12306.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import net.ptcs.my12306.entity.Users;
 import net.ptcs.my12306.util.DBUtils;
@@ -20,6 +21,9 @@ public class UsersDao {
 	private static final String ADD_USER = "insert into tab_user(id,username,password,rule,realname,sex,city,cert_type"
 			+ ",cert,birthday,user_type,content,status,login_ip,image_path)"
 			+ " values (tab_user_seq.nextval,?,?,'2','张三',?,200,1,'440104201910106119',?,1,'备注','1',?,'')";
+	
+	private static final String QUERY_USER_BY_USERNAME_AND_PASSWORD = "select id,username,password,rule,realname,sex,city,cert_type"
+			+ ",cert,birthday,user_type,content,status,login_ip,image_path from tab_user where username=? and password=?";
 
 	public int addUser(Users user) {
 		int rows = 0;
@@ -57,5 +61,46 @@ public class UsersDao {
 			userDao = new UsersDao();
 		}
 		return userDao;
+	}
+
+	/**
+	 *  根据用户名和密码查询用户信息
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public Users queryUserByUsernameAndPassword(String username, String password) {
+		Users user = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+
+			conn = DBUtils.getConnection();
+			stmt = conn.prepareStatement(QUERY_USER_BY_USERNAME_AND_PASSWORD);
+			stmt.setString(1, username);
+			stmt.setString(2, password);
+			rs = stmt.executeQuery();
+		
+			if(rs.next()) {
+				user = new Users();
+				/*
+				 * id,username,password,rule,realname,sex,city,cert_type"
+			+ ",cert,birthday,user_type,content,status,login_ip,image_path
+				 */
+				user.setId(rs.getInt("id"));
+				user.setUsername(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+				user.setRule(rs.getString("rule"));
+				user.setRealname(rs.getString("realname"));
+				//补全另外10个数据
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.release(conn, stmt, rs);
+		}
+		return user;
 	}
 }

@@ -18,11 +18,6 @@ public class UserService {
 		return userDao.addUser(user)>0;
 	}
 	
-	
-	
-	
-	
-	
 	private UserService()
 	{
 		
@@ -37,6 +32,15 @@ public class UserService {
 			userService=new UserService();
 		}
 		return userService;
+	}
+	/**
+	 *  登陆方法
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public Users login(String username, String password) {
+		return userDao.queryUserByUsernameAndPassword(username,password);
 	}
 
 }
