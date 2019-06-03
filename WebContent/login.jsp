@@ -56,7 +56,7 @@ if(message != null){
         <td rowspan="9">&nbsp;</td>
         <td width="98" height="20" align="right"><img src="<%=request.getContextPath()%>/images/text_yh.gif" width="60" height="18"></td>
         <td width="16">&nbsp;</td>
-        <td width="136"><input name="textfield" type="text" id="textfield" size="18" /></td>
+        <td width="136"><input name="username" type="text" id="textfield" size="18" /></td>
         <td width="55">&nbsp;</td>
         <td width="44">&nbsp;</td>
         <td width="32">&nbsp;</td>
@@ -72,7 +72,7 @@ if(message != null){
       <tr>
         <td height="20" align="right"><img src="<%=request.getContextPath()%>/images/text_password.gif" width="60" height="18"></td>
         <td>&nbsp;</td>
-        <td><input name="textfield2" type="text" id="textfield2" size="18" /></td>
+        <td><input name="password" type="text" id="textfield2" size="18" /></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
