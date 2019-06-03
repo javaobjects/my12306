@@ -35,6 +35,7 @@ public class LoginServlet extends HttpServlet {
 		Users user = service.login(username,password);
 		if(user == null) {
 			//登录失败
+			System.out.println("登陆失败");
 			request.setAttribute("message", "用户名或者密码错误");
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}else {
@@ -42,9 +43,11 @@ public class LoginServlet extends HttpServlet {
 			//成功后跳转到哪？要看用户的rule：如果是管理员，去往管理员主页面；如果是普通用户，去往普通用户主页面
 			if("2".equals(user.getRule())) {
 				//普通用户
+				System.out.println("普通用户");
 				request.getRequestDispatcher("user/index.jsp").forward(request,response);
 			}else {
 				//管理员
+				System.out.println("管理员");
 				request.getRequestDispatcher("admin/index.jsp").forward(request, response);
 			}
 		}
