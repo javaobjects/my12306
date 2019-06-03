@@ -43,4 +43,8 @@ public class UserService {
 		return userDao.queryUserByUsernameAndPassword(username,password);
 	}
 
+	public boolean isExistsUserName(String username) {
+		return userDao.queryUsername(username);
+	}
+
 }

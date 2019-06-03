@@ -25,6 +25,8 @@ public class UsersDao {
 	private static final String QUERY_USER_BY_USERNAME_AND_PASSWORD = "select id,username,password,rule,realname,sex,city,cert_type"
 			+ ",cert,birthday,user_type,content,status,login_ip,image_path from tab_user where username=? and password=?";
 
+	private static final String QUERY_USERNAME = "select count(1) count from tab_user where username=?";
+
 	public int addUser(Users user) {
 		int rows = 0;
 		Connection conn = null;
@@ -102,5 +104,38 @@ public class UsersDao {
 			DBUtils.release(conn, stmt, rs);
 		}
 		return user;
+	}
+	/**
+	 * 查询用户名是否存在
+	 * @param username
+	 * @return
+	 */
+	public boolean queryUsername(String username) {
+	Boolean result=false;
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs=null;
+		try {
+
+			conn = DBUtils.getConnection();
+			stmt = conn.prepareStatement(QUERY_USERNAME);
+			stmt.setString(1,username);
+			
+			rs=stmt.executeQuery();
+			if(rs.next())
+			{
+				int tmp=rs.getInt("count");
+				if(tmp>0)
+				{
+					result=true;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.release(conn, stmt, rs);
+		}
+		return result;
 	}
 }
