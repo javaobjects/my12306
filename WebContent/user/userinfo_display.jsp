@@ -10,7 +10,7 @@
 	function UpdateInfo(){
 	
 	
-	window.navigate("UserManageInfo_Edit.html");
+	window.location.href ="<%=request.getContextPath()%>/ToUpdateUserServlet";
 	
 	}
 </script>
