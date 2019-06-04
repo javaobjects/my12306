@@ -16,6 +16,7 @@
 </script>
 <%
 Users user = (Users)request.getAttribute("userinfo");
+System.out.println(user.toString());
 %>
 </head>
 <body class="write_bg">
