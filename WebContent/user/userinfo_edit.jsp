@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8"%>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,7 +27,7 @@
     <td width="786" height="30" align="left" class="text_blod_title">修改个人信息</td>
   </tr>
   <tr>
-    <td height="15" colspan="2" ><img src="../images/line1.jpg" width="835" height="6"></td>
+    <td height="15" colspan="2" ><img src="<%=request.getContextPath() %>/images/line1.jpg" width="835" height="6"></td>
   </tr>
   <tr>
     <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -49,7 +50,8 @@
             <td width="20" align="center" class="text_red1"></td>
             <td width="100" height="40" align="left" class="text_cray1">登录名：</td>
             <td width="350" align="left" class="text_cray1">
-            <input name="textfield22" type="text" disabled="true" class="text_cray" id="textfield22" value="用户1" readonly="readonly"/></td>
+            <input name="textfield22" type="text" disabled="true" class="text_cray" id="textfield22"
+             value="${userinfo.username}" readonly="readonly"/></td>
             <td width="230" colspan="-1" rowspan="7" align="center" background="<%=request.getContextPath()%>/images/bg_point_write.gif"
              class="text_cray1"><img src="<%=request.getContextPath()%>/images/photo_mr.jpg" width="120"> 
                          <table width="90%" border="0" cellpadding="0" cellspacing="0">
@@ -71,16 +73,17 @@
           <tr>
             <td width="20" ></td>
             <td width="100" height="40" align="left" class="text_cray1">真实姓名：</td>
-            <td align="left" class="text_cray1"><input name="textfield2" type="text" disabled="true" class="text_cray" id="textfield2" value="王小明" readonly="readonly"/></td>
+            <td align="left" class="text_cray1"><input name="textfield2" type="text" 
+             class="text_cray" id="textfield2" value="${userinfo.realname}"/></td>
           </tr>
           <tr>
             <td width="20" ></td>
             <td width="100" height="30" align="left" class="text_cray1">性 别：</td>
             <td align="left" class="text_cray1">
-              <input type="radio" name="userDTO.sex_code" value="M" readonly="readonly" disabled="true" checked="checked"/>
+              <input type="radio" name="sex" value="1" ${userinfo.sex==49?"checked":""}/>
           <span class="text_cray">
               <label>男</label>
-              <input type="radio" name="userDTO.sex_code" value="F" readonly="readonly" disabled="true"/>
+              <input type="radio" name="sex" value="2" ${userinfo.sex==50?"checked":""}/>
               <label>女</label>
               </span>
               <label></label>
@@ -91,37 +94,54 @@
           <tr>
             <td width="20" align="center" class="text_red">*</td>
             <td width="100" height="40" align="left" class="text_cray1">省份：</td>
-            <td align="left" class="text_cray1"><input name="textfield2" type="text" disabled="true" class="text_cray" id="textfield2" value="辽宁" readonly="readonly"/>            </td>
+            <td align="left" class="text_cray1">
+            	<input name="province" type="text"  class="text_cray" id="textfield2" value="${userinfo.city.province.provinceName}"/>        
+            </td>
           </tr>
           <tr>
             <td width="20" align="center" class="text_red">*</td>
             <td width="100" height="40" align="left" class="text_cray1">城市：</td>
-            <td align="left" class="text_cray1"><input name="textfield2" type="text" disabled="true" class="text_cray" id="textfield2" value="沈阳" readonly="readonly"/>            </td>
+            <td align="left" class="text_cray1">
+            	<input name="city" type="text" class="text_cray" id="textfield2" value="${userinfo.city.cityName}"/>           
+            </td>
           </tr>
           <tr>
             <td width="20" align="center" class="text_red">*</td>
             <td width="100" height="40" align="left" class="text_cray1">证件类型：</td>
-            <td align="left" class="text_cray1"><input name="textfield2" type="text" disabled="true" class="text_cray" id="textfield2" value="二代身份证" readonly="readonly"/>            </td>
+            <td align="left" class="text_cray1">
+             <select class="text_cray" name="certtype" id="cardType">
+                 <option value="1" ${userinfo.certtype.id==1?"selected":""}><span>二代身份证</span>				</option>
+                 <option value="2" ${userinfo.certtype.id==2?"selected":""}><span>港澳通行证</span>				</option>
+                 <option value="3" ${userinfo.certtype.id==3?"selected":""}><span>台湾通行证</span>				</option>
+                 <option value="4" ${userinfo.certtype.id==4?"selected":""}><span>护照</span>				</option>
+             </select>	             
+            </td>
           </tr>
           <tr>
             <td width="20" align="center" class="text_red">*</td>
             <td width="100" height="40" align="left" class="text_cray1">证件号码：</td>
-            <td align="left" class="text_cray1"><input name="textfield6" type="text" disabled="disabled" class="text_cray" id="textfield6"  value="220211199802082258" readonly="true"/></td>
+            <td align="left" class="text_cray1">
+            	<input name="cert" type="text"  class="text_cray" id="textfield6"  value="${userinfo.cert}"/>
+            </td>
           </tr>
           <tr>
             <td width="20" align="center" class="text_red">*</td>
             <td width="100" height="40" align="left" class="text_cray1">出生日期：</td>
-            <td colspan="2" align="left" class="text_cray1"><input name="textfield7" type="text" disabled="disabled" class="text_cray" id="textfield7" value="1998-2-5" readonly="true"/></td>
+            <td colspan="2" align="left" class="text_cray1">
+            	<input name="birthday" type="text" class="text_cray" id="textfield7" value="${userinfo.birthday}"/>
+            </td>
           </tr>
           <tr>
             <td width="20" height="35" ></td>
             <td width="100" height="40" align="left" class="text_cray1">旅客类型：</td>
-            <td height="35" colspan="2" align="left" class="text_cray1"><select class="text_cray" id="passengerType" name="passenger_type">
-              <option value="1">成人</option>
-                <option value="2">儿童</option>
-                <option value="3">学生</option>
-                <option value="4">残疾军人、伤残人民警察</option>
-            </select>            </td>
+            <td height="35" colspan="2" align="left" class="text_cray1">
+		          <select class="text_cray" id="passengerType" name="passenger_type">
+		                 <option value="1" ${userinfo.usertype.id==1?"selected":""}>成人</option>
+		                 <option value="2" ${userinfo.usertype.id==2?"selected":""}>儿童</option>
+		                 <option value="3" ${userinfo.usertype.id==3?"selected":""}>学生</option>
+		                 <option value="4" ${userinfo.usertype.id==4?"selected":""}>残疾军人、伤残人民警察</option>
+		          </select>           
+            </td>
           </tr>
           <tr>
             <td height="10" colspan="4" align="center"></td>
@@ -129,7 +149,9 @@
           <tr>
             <td width="20" ></td>
             <td width="100" height="80" align="left" class="text_cray1">备注：</td>
-            <td height="80" colspan="2" align="left" class="text_cray1"><textarea name="textarea" rows="8" class="text_cray" style="width:100%"></textarea>            </td>
+            <td height="80" colspan="2" align="left" class="text_cray1">
+          		<textarea name="content" rows="8" class="text_cray" style="width:100%">${userinfo.content}</textarea>         
+            </td>
           </tr>
         </table><br>
         <table width="100%" border="0" cellspacing="0">
