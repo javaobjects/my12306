@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>无标题文档</title>
+<title>12306购票系统</title>
 </head>
 <frameset rows="130,*" cols="*" frameborder="no" border="0" framespacing="0">
   <frame src="<%=request.getContextPath() %>/user/top.jsp" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame">
