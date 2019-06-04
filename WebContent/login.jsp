@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="net.ptcs.my12306.entity.Users" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -31,6 +31,56 @@ body {
 -->
 </style>
 </head>
+
+<%
+//如果用户前面登录时勾选了自动登录，那么访问登录页面时需要先获取cookie中的内容，如果有，就说明上次写cookie写成功了，
+//那么根据cookie的内容自动跳转到对应的首页面
+Cookie[] cookies=request.getCookies();
+if(cookies!=null)
+{
+	String username=null;
+	String password=null;
+	String rule=null;
+	Users user=null;
+	for(Cookie c:cookies)
+	{
+		if("username".equals(c.getName()))
+		{
+			username=c.getValue();
+		}
+		if("password".equals(c.getName()))
+		{
+			password=c.getValue();
+		}
+		if("rule".equals(c.getName()))
+		{
+			rule=c.getValue();
+		}
+	}
+	if(username!=null&&password!=null&&rule!=null&&!"".equals(username))
+	{
+		user=new Users();
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setRule(rule);
+		
+		session.setAttribute("user", user);
+		
+		//跳转到对应权限页面
+		if("1".equals(rule))
+		{
+			response.sendRedirect("admin/index.jsp");
+		}else if("2".equals(rule))
+		{
+			response.sendRedirect("user/index.jsp");
+		}
+	}
+	
+}
+
+
+
+%>
 <%
 String message = request.getParameter("message");
 
@@ -57,7 +107,17 @@ if(message != null){
         <td rowspan="9">&nbsp;</td>
         <td width="98" height="20" align="right"><img src="<%=request.getContextPath()%>/images/text_yh.gif" width="60" height="18"></td>
         <td width="16">&nbsp;</td>
-        <td width="136"><input name="username" type="text" id="textfield" size="18" /></td>
+        <td width="136">
+        <input name="username" type="text" id="textfield" size="18" />
+        <%-- <%  String login_message=(String)request.getAttribute("message");
+        if(login_message!=null)
+        {
+        %>	
+        <%=login_message%>
+        <% }
+        %> --%>
+        ${login_message}
+        </td>
         <td width="55">&nbsp;</td>
         <td width="44">&nbsp;</td>
         <td width="32">&nbsp;</td>
@@ -89,7 +149,7 @@ if(message != null){
       <tr>
         <td height="20" align="right"><img src="<%=request.getContextPath()%>/images/text_yzm.gif" width="60" height="18"></td>
         <td>&nbsp;</td>
-        <td><input name="textfield3" type="text" id="textfield3" size="18" /></td>
+        <td><input name="code" type="text" id="textfield3" size="18" /></td>
         <td>
         <span class="text_cray1">
         <img src="<%=request.getContextPath()%>/ValidateCodeServlet" alt="" height="20" id="login_image_code" onclick="refresh()"/>

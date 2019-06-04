@@ -41,4 +41,16 @@ index.jsp的framest下的frame的top.jsp路径不对
     <frame src="<%=request.getContextPath() %>/user/main.jsp" name="mainFrame"
      id="mainFrame" title="mainFrame">
 ```
- 
+ 2. HTTP Status 500 - Unable to compile class for JSP: 
+ ![](WebContent/images/bug_2.png)
+
+ **原因：包名路径导入错误**
+ ```
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="entity.Users" %>
+ ```
+**解决方法：** 将路径重新配置正确
+```
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="net.ptcs.my12306.entity.Users" %>
+```
