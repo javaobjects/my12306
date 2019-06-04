@@ -48,8 +48,11 @@
           <tr>
             <td width="20" align="center" class="text_red1"></td>
             <td width="100" height="40" align="left" class="text_cray1">登录名：</td>
-            <td width="350" align="left" class="text_cray1"><input name="textfield22" type="text" disabled="true" class="text_cray" id="textfield22" value="用户1" readonly="readonly"/></td>
-            <td width="230" colspan="-1" rowspan="7" align="center" background="<%=request.getContextPath()%>/images/bg_point_write.gif" class="text_cray1"><img src="../images/photo_mr.jpg" width="120">              <table width="90%" border="0" cellpadding="0" cellspacing="0">
+            <td width="350" align="left" class="text_cray1">
+            <input name="textfield22" type="text" disabled="true" class="text_cray" id="textfield22" value="用户1" readonly="readonly"/></td>
+            <td width="230" colspan="-1" rowspan="7" align="center" background="<%=request.getContextPath()%>/images/bg_point_write.gif"
+             class="text_cray1"><img src="<%=request.getContextPath()%>/images/photo_mr.jpg" width="120"> 
+                         <table width="90%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td height="15" ></td>
                 </tr>
