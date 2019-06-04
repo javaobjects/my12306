@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import net.ptcs.my12306.entity.CertType;
+import net.ptcs.my12306.entity.City;
 import net.ptcs.my12306.entity.Users;
 import net.ptcs.my12306.util.DBUtils;
 
@@ -86,6 +88,8 @@ public class UsersDao {
 		
 			if(rs.next()) {
 				user = new Users();
+				City city = new City();
+				CertType cert_type = new CertType();
 				/*
 				 * id,username,password,rule,realname,sex,city,cert_type"
 			+ ",cert,birthday,user_type,content,status,login_ip,image_path
@@ -95,8 +99,12 @@ public class UsersDao {
 				user.setPassword(rs.getString("password"));
 				user.setRule(rs.getString("rule"));
 				user.setRealname(rs.getString("realname"));
-//				user.setSex(rs.getString("sex"));//Character类型不会转换
-//				user.setCity(rs.get("city"));//引用类型不会转换
+				user.setSex(rs.getString("sex").charAt(0));//Character类型不会转换
+				
+				city.setCityId(rs.getString("city"));
+				user.setCity(city);//引用类型不会转换
+				
+//				cert_type.setId(id);
 //				user.setCerttype(rs.get("cert_type"));
 				user.setCert(rs.getString("cert"));
 				user.setBirthday(rs.getDate("birthday"));

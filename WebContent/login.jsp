@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8"%>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -89,10 +90,18 @@ if(message != null){
         <td height="20" align="right"><img src="<%=request.getContextPath()%>/images/text_yzm.gif" width="60" height="18"></td>
         <td>&nbsp;</td>
         <td><input name="textfield3" type="text" id="textfield3" size="18" /></td>
-        <td><span class="text_cray1"><img src="<%=request.getContextPath()%>/images/bg_img2.gif" alt="" height="20" /></span></td>
-        <td><img src="<%=request.getContextPath()%>/images/text_sx.gif" width="32" height="18"></td>
+        <td>
+        <span class="text_cray1">
+        <img src="<%=request.getContextPath()%>/ValidateCodeServlet" alt="" height="20" id="login_image_code" onclick="refresh()"/>
+        </span></td>
+        <td><img src="<%=request.getContextPath()%>/images/text_sx.gif" width="32" height="18" onclick="refresh()" ></td>
         <td align="left">&nbsp;</td>
       </tr>
+      <script>
+         function refresh(){
+        	 document.querySelector("#login_image_code").src = "<%=request.getContextPath()%>/ValidateCodeServlet?data="+new Date();
+         }
+      </script>
       <tr>
         <td height="30">&nbsp;</td>
         <td>&nbsp;</td>

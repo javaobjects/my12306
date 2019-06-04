@@ -33,9 +33,12 @@ index.jsp的framest下的frame的top.jsp路径不对
 ```
 **解决方法：** 将路径重新配置正确
 ```
-<frame src="<%=request.getContextPath() %>/user/top.jsp" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame">
+<frame src="<%=request.getContextPath() %>/user/top.jsp" name="topFrame" scrolling="No"
+ noresize="noresize" id="topFrame" title="topFrame">
   <frameset rows="*" cols="247,*" framespacing="0" frameborder="no" border="0">
-    <frame src="<%=request.getContextPath() %>/user/left.jsp" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" title="leftFrame">
-    <frame src="<%=request.getContextPath() %>/user/main.jsp" name="mainFrame" id="mainFrame" title="mainFrame">
+    <frame src="<%=request.getContextPath() %>/user/left.jsp" name="leftFrame" 
+    scrolling="No" noresize="noresize" id="leftFrame" title="leftFrame">
+    <frame src="<%=request.getContextPath() %>/user/main.jsp" name="mainFrame"
+     id="mainFrame" title="mainFrame">
 ```
  
