@@ -19,8 +19,8 @@
   <tr>
     <td width="75" height="25" bgcolor="#deedf8"></td>
     <td width="1122" align="left" valign="top" bgcolor="#deedf8"><span class="text_cray1">当前位置: 所有用户管理</span></td>
-    <td width="140" valign="top" bgcolor="#deedf8" class="text_cray1">欢迎您，某某某</td>
-    <td width="64" align="left" valign="top" bgcolor="#deedf8"><a href="<%=request.getContextPath()%>/login.jsp" target="_blank" class="cray">退出</a></td>
+    <td width="140" valign="top" bgcolor="#deedf8" class="text_cray1">欢迎您，${sessionScope.user.username }</td>
+    <td width="64" align="left" valign="top" bgcolor="#deedf8"><a href="<%=request.getContextPath()%>/ExitServlet" target="_blank" class="cray">退出</a></td>
   </tr>
 </table>
 

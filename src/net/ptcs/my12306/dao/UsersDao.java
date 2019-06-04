@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 
 import net.ptcs.my12306.entity.CertType;
 import net.ptcs.my12306.entity.City;
+import net.ptcs.my12306.entity.UserType;
 import net.ptcs.my12306.entity.Users;
 import net.ptcs.my12306.util.DBUtils;
 
@@ -88,8 +89,8 @@ public class UsersDao {
 		
 			if(rs.next()) {
 				user = new Users();
-				City city = new City();
-				CertType cert_type = new CertType();
+//				City city = new City();
+//				CertType cert_type = new CertType();
 				/*
 				 * id,username,password,rule,realname,sex,city,cert_type"
 			+ ",cert,birthday,user_type,content,status,login_ip,image_path
@@ -101,16 +102,21 @@ public class UsersDao {
 				user.setRealname(rs.getString("realname"));
 				user.setSex(rs.getString("sex").charAt(0));//Character类型不会转换
 				
-				city.setCityId(rs.getString("city"));
-				user.setCity(city);//引用类型不会转换
+//				city.setCityId(rs.getString("city"));
+//				user.setCity(city);
 				
+				
+				user.setCity(new City(null,rs.getString("city"),null,null));////引用类型不会转换
 //				cert_type.setId(id);
 //				user.setCerttype(rs.get("cert_type"));
+				user.setCerttype(new CertType(rs.getInt("cert_type"), null));
 				user.setCert(rs.getString("cert"));
 				user.setBirthday(rs.getDate("birthday"));
 //				user.setUsertype(rs.get("user_type"));
+				user.setUsertype(new UserType(rs.getInt("user_type"),null));
 				user.setContent(rs.getString("content"));
 //				user.setStatus(rs.get("status"));
+				user.setStatus(rs.getString("status").charAt(0));
 				user.setLoginIp(rs.getString("login_ip"));
 				user.setImagePath(rs.getString("image_path"));
 			}
