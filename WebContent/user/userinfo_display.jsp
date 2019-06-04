@@ -63,7 +63,7 @@ Users user = (Users)request.getAttribute("userinfo");
           <tr>
             <td width="20" height="40" align="center" class="text_red">*</td>
             <td width="100" height="40" align="left" class="text_cray1">性 别：</td>
-            <td align="left" class="text_cray"><%=user.getSex().equals("1")?"男":"男" %></td>
+            <td align="left" class="text_cray"><%=user.getSex()==49?"男":"女" %></td>
           </tr>
           <tr>
             <td width="20" height="40" align="center" class="text_red">*</td>

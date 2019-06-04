@@ -33,15 +33,15 @@ public class ExitServlet extends HttpServlet {
 		
 		//1.把cookie清除掉
 		Cookie username_cookie=new Cookie("username", null);
-		username_cookie.setMaxAge(7*24*60*60);
+		username_cookie.setMaxAge(0);
 		username_cookie.setPath(request.getContextPath()+"/");
 		
 		Cookie password_cookie=new Cookie("password",null);
-		password_cookie.setMaxAge(7*24*60*60);
+		password_cookie.setMaxAge(0);
 		password_cookie.setPath(request.getContextPath()+"/");
 		
 		Cookie rule_cookie=new Cookie("rule",null);
-		rule_cookie.setMaxAge(7*24*60*60);
+		rule_cookie.setMaxAge(0);
 		rule_cookie.setPath(request.getContextPath()+"/");
 		
 		response.addCookie(username_cookie);
