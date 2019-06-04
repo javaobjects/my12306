@@ -27,7 +27,7 @@ body {
   </tr>
   <tr>
     <td align="right"><img src="<%=request.getContextPath()%>/images/ny_arrow1.gif" width="24" height="13"></td>
-    <td height="35"><a href="<%=request.getContextPath()%>/admin/userlist.jsp" target="mainFrame" class="cray">用户管理</a></td>
+    <td height="35"><a href="<%=request.getContextPath()%>/GetUserInfoServlet" target="mainFrame" class="cray">用户管理</a></td>
   </tr>
   <tr>
     <td align="right"><img src="../images/ny_arrow1.gif" width="24" height="13"></td>

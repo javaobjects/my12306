@@ -64,7 +64,6 @@ public class LoginServlet extends HttpServlet {
 					request.setAttribute("message", "用户名或者密码错误");
 					request.getRequestDispatcher("/login.jsp").forward(request, response);
 				}else {
-					System.out.println("user:"+user);
 					//登陆成功
 					//登录成功
 					//在主页面中显示用户信息,1.把用户信息放入一个地方，这个地方各个页面都可以从这里拿数据，那么这个地方是HttpSession
