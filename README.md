@@ -54,3 +54,19 @@ index.jsp的framest下的frame的top.jsp路径不对
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="net.ptcs.my12306.entity.Users" %>
 ```
+3. HTTP Status 500 - java.lang.NullPointerException
+![](WebContent/images/bug_3.png)
+**原因：此点击跳转的路径未正确设置，必须先经过Servlet而后跳转**
+```
+  <tr>
+    <td align="right"><img src="<%=request.getContextPath()%>/
+    images/ny_arrow1.gif" width="24" height="13"></td>
+    <td height="35"><a href="<%=request.getContextPath()%>/user/
+    userinfo_display.jsp" target="mainFrame"class="cray">查看个人信
+    息</a></td>
+  </tr>
+```
+**解决方法：** 将路径重新配置正确
+```
+
+```

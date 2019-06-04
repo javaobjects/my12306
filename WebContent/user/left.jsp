@@ -14,7 +14,8 @@ body {
 	margin-top: 0px;
 }
 -->
-</style></head>
+</style>
+</head>
 
 <body>
 <table width="247" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -27,7 +28,7 @@ body {
   </tr>
   <tr>
     <td align="right"><img src="<%=request.getContextPath()%>/images/ny_arrow1.gif" width="24" height="13"></td>
-    <td height="35"><a href="<%=request.getContextPath()%>/user/userinfo_display.jsp" target="mainFrame"class="cray">查看个人信息</a></td>
+    <td height="35"><a href="<%=request.getContextPath()%>/GetUserInfoServlet" target="mainFrame"class="cray">查看个人信息</a></td>
   </tr>
   <tr>
     <td align="right"><img src="../images/ny_arrow1.gif" width="24" height="13"></td>
