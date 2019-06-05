@@ -10,7 +10,7 @@
 <script language="javascript">
 	function UserRegistration(){
 	
-	///cxvcxvcv
+
 	window.navigate("user_register.jsp");
 	
 	}
