@@ -10,7 +10,7 @@
 </head>
 
 <body class="write_bg">
-<form name="form1" method="post" action="">
+<form name="form1" method="post" action="<%=request.getContextPath()%>/UpdateUserServlet">
 
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
@@ -162,7 +162,7 @@
         <table width="700" border="0" align="center" cellpadding="0" cellspacing="0">
           <tr>
             <td width="164"></td>
-            <td width="99" height="30" align="center"><input name="button" type="submit" class="buttj" id="button"value=""></td>
+            <td width="99" height="30" align="center"><input name="button" type="submit" class="buttj" id="button" value=""></td>
             <td width="98" ></td>
             <td width="97" align="center"><input name="button2" type="reset" class="butcz" id="button2"value=""></td>
             <td width="92" ></td>
