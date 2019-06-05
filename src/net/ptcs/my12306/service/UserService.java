@@ -45,6 +45,24 @@ public class UserService {
 		return userDao.addUser(user)>0;
 	}
 	
+	/**
+	 * 判断用户名是否已经存在
+	 */
+	public boolean isExistsUserName(String username)
+	{
+		return userDao.queryUsername(username);
+	}
+	
+	/**
+	 *  登陆方法
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public Users login(String username, String password) {
+		return userDao.queryUserByUsernameAndPassword(username,password);
+	}
+	
 	private UserService()
 	{
 		
@@ -60,18 +78,4 @@ public class UserService {
 		}
 		return userService;
 	}
-	/**
-	 *  登陆方法
-	 * @param username
-	 * @param password
-	 * @return
-	 */
-	public Users login(String username, String password) {
-		return userDao.queryUserByUsernameAndPassword(username,password);
-	}
-
-	public boolean isExistsUserName(String username) {
-		return userDao.queryUsername(username);
-	}
-
 }

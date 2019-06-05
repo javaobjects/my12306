@@ -47,7 +47,4 @@ public class Province {
 		return "Province [id=" + id + ", provinceId=" + provinceId
 				+ ", provinceName=" + provinceName + "]";
 	}
-	
-	
-
 }

@@ -6,6 +6,7 @@ package net.ptcs.my12306.entity;
  */
 public class City {
 	
+
 	//id  cityid  city  father
 	private Integer id;
 	private String cityId;//cityid
@@ -48,6 +49,12 @@ public class City {
 	public City() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public City(Integer id) {
+		super();
+		this.id = id;
 	}
 	@Override
 	public String toString() {

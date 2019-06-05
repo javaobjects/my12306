@@ -1,8 +1,11 @@
 package net.ptcs.my12306.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -69,6 +72,28 @@ public class LoginServlet extends HttpServlet {
 					//在主页面中显示用户信息,1.把用户信息放入一个地方，这个地方各个页面都可以从这里拿数据，那么这个地方是HttpSession
 					HttpSession session=request.getSession();
 					session.setAttribute("user", user);
+					
+					//根据用户是否自动登录，来写cookie
+					if("auto".equals(auto))
+					{
+						//写Cookie的套路：先new一个cookie，然后调用response的addCookie方法就可以写cookie了
+						Cookie username_cookie=new Cookie("username", URLEncoder.encode(username, "utf-8"));
+						username_cookie.setMaxAge(7*24*60*60);
+						username_cookie.setPath(request.getContextPath()+"/");
+						
+						Cookie password_cookie=new Cookie("password",Md5Utils.md5(password));
+						password_cookie.setMaxAge(7*24*60*60);
+						password_cookie.setPath(request.getContextPath()+"/");
+						
+						Cookie rule_cookie=new Cookie("rule",user.getRule());
+						rule_cookie.setMaxAge(7*24*60*60);
+						rule_cookie.setPath(request.getContextPath()+"/");
+						
+						response.addCookie(username_cookie);
+						response.addCookie(password_cookie);
+						response.addCookie(rule_cookie);
+					}
+					
 					//成功后跳转到哪？要看用户的rule：如果是管理员，去往管理员主页面；如果是普通用户，去往普通用户主页面
 					if("2".equals(user.getRule())) {
 						//普通用户
