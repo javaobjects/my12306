@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import net.ptcs.my12306.entity.Users;
 import net.ptcs.my12306.service.UserService;
+import net.ptcs.my12306.util.Md5Utils;
 
 /**
  * Servlet implementation class LoginServlet
