@@ -10,12 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.ptcs.my12306.entity.Users;
+import net.ptcs.my12306.service.CityService;
+import net.ptcs.my12306.service.ProvinceService;
 import net.ptcs.my12306.service.UserService;
 
-
-
 /**
- * Servlet implementation class ToUpdateUserServlet
+ * 去往用户修改信息页面的servlet
+ * 需要获取以下信息
+ * 1.用户本人信息
+ * 2.所有省份信息
+ * 3.获取当前用户所在省份的所有城市信息
+ * @author xianxian
+ *
  */
 @WebServlet("/ToUpdateUserServlet")
 public class ToUpdateUserServlet extends HttpServlet {
@@ -35,6 +41,12 @@ public class ToUpdateUserServlet extends HttpServlet {
 		
 		//2、把用户信息传给页面，并跳转到目标页面
 		request.setAttribute("userinfo", result);
+		//获取所有省份并传给页面
+		request.setAttribute("provinces", ProvinceService.getInstance().getAllProvince());
+		//获取当前用户所在省份的所有城市信息并传给页面
+		request.setAttribute("cities", CityService.getInstance().
+		getCityByProvinceid(result.getCity().getProvince().getProvinceId()));
+		
 		request.getRequestDispatcher("/user/userinfo_edit.jsp").forward(request, response);
 		
 	}
