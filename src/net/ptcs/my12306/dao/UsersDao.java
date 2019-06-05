@@ -24,12 +24,11 @@ public class UsersDao {
 	private static final String ADD_USER = "insert into tab_user(id,username,password,rule,realname,sex,city,cert_type"
 			+ ",cert,birthday,user_type,content,status,login_ip,image_path)"
 			+ " values (tab_user_seq.nextval,?,?,'2','张三',?,200,1,'440104201910106119',?,1,'备注','1',?,'')";
-	
-	private static final String QUERY_USER_BY_USERNAME_AND_PASSWORD = "select id,username,password,rule,realname,sex,city,cert_type"
-			+ ",cert,birthday,user_type,content,status,login_ip,image_path from tab_user where username=? and password=?";
 
 	private static final String QUERY_USERNAME = "select count(1) count from tab_user where username=?";
 
+	private static final String QUERY_USER_BY_USERNAME_AND_PASSWORD = "select id,username,password,rule,realname,sex,city,cert_type"
+			+ ",cert,birthday,user_type,content,status,login_ip,image_path from tab_user where username=? and password=?";
 	public int addUser(Users user) {
 		int rows = 0;
 		Connection conn = null;
