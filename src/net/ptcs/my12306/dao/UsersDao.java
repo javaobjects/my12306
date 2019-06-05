@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 
 import net.ptcs.my12306.entity.CertType;
 import net.ptcs.my12306.entity.City;
+import net.ptcs.my12306.entity.Province;
 import net.ptcs.my12306.entity.UserType;
 import net.ptcs.my12306.entity.Users;
 import net.ptcs.my12306.util.DBUtils;
@@ -27,8 +28,14 @@ public class UsersDao {
 
 	private static final String QUERY_USERNAME = "select count(1) count from tab_user where username=?";
 
-	private static final String QUERY_USER_BY_USERNAME_AND_PASSWORD = "select id,username,password,rule,realname,sex,city,cert_type"
-			+ ",cert,birthday,user_type,content,status,login_ip,image_path from tab_user where username=? and password=?";
+	private static final String QUERY_USER_BY_USERNAME_AND_PASSWORD = "select u.id,u.username,u.password,u.rule,"
+			+ "u.realname,u.sex,u.city c_id,u.cert_type"
+			+ ",u.cert,u.birthday,u.user_type,u.content,u.status,u.login_ip,u.image_path,"
+			+ "c.city,p.province,p.provinceid,ut.content ut_content,ct.content ct_content "
+			+ "from tab_user u,tab_city c,tab_province p,tab_usertype ut,tab_certtype ct"
+			+ " where u.city=c.id and p.provinceid=c.father "
+			+ "and ut.id=u.user_type and ct.id=u.cert_type "
+			+ "and u.username=? and u.password=?";
 	
 	public int addUser(Users user) {
 		int rows = 0;
@@ -104,28 +111,27 @@ public class UsersDao {
 	}
 
 	/**
-	 *  根据用户名和密码查询用户信息
+	 * 根据用户名和密码查询用户信息
 	 * @param username
 	 * @param password
 	 * @return
 	 */
 	public Users queryUserByUsernameAndPassword(String username, String password) {
-		Users user = null;
+		Users user=null;
+		
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
+		ResultSet rs=null;
 		try {
 
 			conn = DBUtils.getConnection();
 			stmt = conn.prepareStatement(QUERY_USER_BY_USERNAME_AND_PASSWORD);
-			stmt.setString(1, username);
-			stmt.setString(2, password);
-			rs = stmt.executeQuery();
-		
-			if(rs.next()) {
-				user = new Users();
-//				City city = new City();
-//				CertType cert_type = new CertType();
+			stmt.setString(1,username);
+			stmt.setString(2,password);
+			rs=stmt.executeQuery();
+			if(rs.next())
+			{
+				user=new Users();
 				/*
 				 * id,username,password,rule,realname,sex,city,cert_type"
 			+ ",cert,birthday,user_type,content,status,login_ip,image_path
@@ -135,27 +141,21 @@ public class UsersDao {
 				user.setPassword(rs.getString("password"));
 				user.setRule(rs.getString("rule"));
 				user.setRealname(rs.getString("realname"));
-				user.setSex(rs.getString("sex").charAt(0));//Character类型不会转换
-				
-//				city.setCityId(rs.getString("city"));
-//				user.setCity(city);
-				
-				
-				user.setCity(new City(null,rs.getString("city"),null,null));////引用类型不会转换
-//				cert_type.setId(id);
-//				user.setCerttype(rs.get("cert_type"));
-				user.setCerttype(new CertType(rs.getInt("cert_type"), null));
+				//补全另外10个数据
+				user.setId(rs.getInt("id"));
+				user.setRule(rs.getString("rule"));
+				user.setSex(rs.getString("sex").charAt(0));
+				user.setCity(new City(rs.getInt("c_id"),null, rs.getString("city"), new Province(null, rs.getString("provinceid"), rs.getString("province"))));
+				user.setCerttype(new CertType(rs.getInt("cert_type"), rs.getString("ct_content")));
 				user.setCert(rs.getString("cert"));
 				user.setBirthday(rs.getDate("birthday"));
-//				user.setUsertype(rs.get("user_type"));
-				user.setUsertype(new UserType(rs.getInt("user_type"),null));
+				user.setUsertype(new UserType(rs.getInt("user_type"),rs.getString("ut_content")));
 				user.setContent(rs.getString("content"));
-//				user.setStatus(rs.get("status"));
 				user.setStatus(rs.getString("status").charAt(0));
 				user.setLoginIp(rs.getString("login_ip"));
 				user.setImagePath(rs.getString("image_path"));
-			}
 
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

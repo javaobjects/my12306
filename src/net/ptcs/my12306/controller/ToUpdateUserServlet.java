@@ -37,15 +37,20 @@ public class ToUpdateUserServlet extends HttpServlet {
 		
 		Users result = UserService.getInstance().login(user.getUsername(),user.getPassword());
 		
-		System.out.println(result);
-		
+		System.out.println("result:"+result);
+		System.out.println(result.getCity());
+		System.out.println(result.getCity().getProvince());
+		System.out.println(result.getCity().getProvince().getProvinceId());
+		System.out.println(CityService.getInstance().
+				getCityByProvinceid(result.getCity().getProvince().getProvinceId()));
 		//2、把用户信息传给页面，并跳转到目标页面
 		request.setAttribute("userinfo", result);
 		//获取所有省份并传给页面
 		request.setAttribute("provinces", ProvinceService.getInstance().getAllProvince());
 		//获取当前用户所在省份的所有城市信息并传给页面
+		System.out.println("hehe....mnm jge ttd gqx wq wq wh isjg isjg ");
 		request.setAttribute("cities", CityService.getInstance().
-		getCityByProvinceid(result.getCity().getProvince().getProvinceId()));
+				getCityByProvinceid(result.getCity().getProvince().getProvinceId()));
 		
 		request.getRequestDispatcher("/user/userinfo_edit.jsp").forward(request, response);
 		

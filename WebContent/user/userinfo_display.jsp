@@ -108,7 +108,9 @@ Users user = (Users)request.getAttribute("userinfo");
       </table>
       <table width="263" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-          <td height="30" align="center"><input name="button" type="button" class="butxg" id="button"value="" onClick="UpdateInfo()"></td>
+          <td height="30" align="center">
+          <input name="button" type="button" class="butxg" id="button"value="" onClick="UpdateInfo()">
+          </td>
           </tr>
       </table>
     </table>
