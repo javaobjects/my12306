@@ -68,5 +68,8 @@ index.jsp的framest下的frame的top.jsp路径不对
 ```
 **解决方法：** 将路径重新配置正确
 ```
-
+  <tr>
+    <td align="right"><img src="<%=request.getContextPath()%>/images/ny_arrow1.gif" width="24" height="13"></td>
+    <td height="35"><a href="<%=request.getContextPath()%>/GetUserInfoServlet" target="mainFrame"class="cray">查看个人信息</a></td>
+  </tr>
 ```
