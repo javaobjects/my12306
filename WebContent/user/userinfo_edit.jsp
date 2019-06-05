@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.List,net.ptcs.my12306.entity.Province,java.util.Iterator,net.ptcs.my12306.entity.Users"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -164,7 +164,7 @@
             <td width="164"></td>
             <td width="99" height="30" align="center"><input name="button" type="submit" class="buttj" id="button"value=""></td>
             <td width="98" ></td>
-            <td width="97" align="center"><input name="button2" type="submit" class="butcz" id="button2"value=""></td>
+            <td width="97" align="center"><input name="button2" type="reset" class="butcz" id="button2"value=""></td>
             <td width="92" ></td>
           </tr>
         </table>
