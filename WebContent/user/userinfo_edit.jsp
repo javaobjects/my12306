@@ -76,7 +76,7 @@
           <tr>
             <td width="20" ></td>
             <td width="100" height="40" align="left" class="text_cray1">真实姓名：</td>
-            <td align="left" class="text_cray1"><input name="textfield2" type="text" 
+            <td align="left" class="text_cray1"><input name="realname" type="text" 
              class="text_cray" id="textfield2" value="${userinfo.realname}"/></td>
           </tr>
           <tr>
