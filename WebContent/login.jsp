@@ -9,9 +9,7 @@
 </style>
 <script language="javascript">
 	function UserRegistration(){
-	
-
-	window.navigate("user_register.jsp");
+		location.href = "user_register.jsp";
 	
 	}
 </script>
