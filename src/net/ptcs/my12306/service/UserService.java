@@ -1,5 +1,7 @@
 package net.ptcs.my12306.service;
 
+import java.util.List;
+
 import net.ptcs.my12306.dao.UsersDao;
 import net.ptcs.my12306.entity.Users;
 
@@ -77,5 +79,10 @@ public class UserService {
 			userService=new UserService();
 		}
 		return userService;
+	}
+
+	public List<Users> getUserByCondition(String username, int parseInt, String cert, int parseInt2, char charAt) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
