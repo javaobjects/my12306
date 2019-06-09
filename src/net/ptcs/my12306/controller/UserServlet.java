@@ -16,7 +16,7 @@ import net.ptcs.my12306.service.UserService;
 /**
  * Servlet implementation class UserServlet
  */
-@WebServlet("/UserServlet")
+@WebServlet(description = "", urlPatterns = { "/UserServlet" })
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

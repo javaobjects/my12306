@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class ValidateCodeServlet
  */
-@WebServlet("/ValidateCodeServlet")
+@WebServlet(description = "", urlPatterns = { "/ValidateCodeServlet" })
 public class ValidateCodeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

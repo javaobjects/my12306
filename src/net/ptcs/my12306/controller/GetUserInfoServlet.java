@@ -15,7 +15,7 @@ import net.ptcs.my12306.service.UserService;
 /**
  * Servlet implementation class GetUserInfoServlet
  */
-@WebServlet("/GetUserInfoServlet")
+@WebServlet(description = "", urlPatterns = { "/GetUserInfoServlet" })
 public class GetUserInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -23,7 +23,7 @@ import net.ptcs.my12306.service.UserService;
  * @author xianxian
  *
  */
-@WebServlet("/ToUpdateUserServlet")
+@WebServlet(description = "", urlPatterns = { "/ToUpdateUserServlet" })
 public class ToUpdateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
