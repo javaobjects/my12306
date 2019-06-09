@@ -1,4 +1,4 @@
-# 仿12306JAVAEE-JSP项目 fdsfsd
+# 仿12306JAVAEE-JSP项目
 
 项目所用技术：Servlet、单例模式
 
