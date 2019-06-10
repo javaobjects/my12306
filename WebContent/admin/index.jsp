@@ -13,6 +13,8 @@
     <frame src="<%=request.getContextPath()%>/admin/main.jsp" name="mainFrame" id="mainFrame" title="mainFrame">
   </frameset>
 </frameset>
-<noframes><body>
+<noframes>
+<body>
 </body>
-</noframes></html>
+</noframes>
+</html>
