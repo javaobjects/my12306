@@ -47,7 +47,7 @@ function selectAllNullorReserve(obj,type){
 </script>
 </head>
 <body class="write_bg">
- <form name="form1" method="post" action="">
+ <form name="form1" method="post" action="<%=request.getContextPath()%>/AdminManageUserServlet?operator=queryUser">
 
 <table width="1107" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>

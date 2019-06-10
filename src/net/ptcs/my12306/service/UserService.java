@@ -82,7 +82,7 @@ public class UserService {
 	}
 
 	public List<Users> getUserByCondition(String username, int parseInt, String cert, int parseInt2, char charAt) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return userDao.queryUserByCondition(username,certtype,cert,usertype,sex);
 	}
 }
