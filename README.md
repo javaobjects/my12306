@@ -99,3 +99,5 @@ index.jsp的framest下的frame的top.jsp路径不对
 **原因：** 命名未统一
 ![](WebContent/images/bug_6_yuanyin.png)
 **解决方法：将其命名弄统一**
+```
+```
