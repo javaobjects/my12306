@@ -72,7 +72,8 @@ function selectAllNullorReserve(obj,type){
 </table>
 <table width="835" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="835" background="../images/wb_01 (3).jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<%--     <td width="835" background="<%=request.getContextPath()%>/images/wb_01 (3).jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0"> --%>
+    <td width="835"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="5"></td>
         <td width="4%" height="25" align="left" class="text_cray1">姓名</td>
@@ -129,7 +130,7 @@ function selectAllNullorReserve(obj,type){
             <td width="89" height="25" valign="middle" bordercolor="#FFFFFF" bgcolor="#FFFFFF"  class="text_cray1">操作</td>
           </tr>
           <tr align="center">
-            <td height="15" colspan="7" bordercolor="#FFFFFF" bgcolor="#FFFFFF"   class="text_cray1"><img src="../images/line1.jpg" width="790" height="6"></td>
+            <td height="15" colspan="7" bordercolor="#FFFFFF" bgcolor="#FFFFFF"   class="text_cray1"><img src="<%=request.getContextPath()%>/images/line1.jpg" width="790" height="6"></td>
           </tr>
           
            <c:forEach items="${userList}" var="u" varStatus="status">
