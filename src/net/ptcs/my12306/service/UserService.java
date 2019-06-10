@@ -81,7 +81,7 @@ public class UserService {
 		return userService;
 	}
 
-	public List<Users> getUserByCondition(String username, int parseInt, String cert, int parseInt2, char charAt) {
+	public List<Users> getUserByCondition(String username, int certtype, String cert, int usertype, char sex) {
 
 		return userDao.queryUserByCondition(username,certtype,cert,usertype,sex);
 	}
