@@ -146,7 +146,7 @@ public class Users {
 				+ ", sex=" + sex + ", city=" + city + ", certtype=" + certtype
 				+ ", cert=" + cert + ", birthday=" + birthday + ", usertype="
 				+ usertype + ", content=" + content + ", status=" + status
-				+ ", loginIp=" + loginIp + ", imagePath=" + imagePath + "]";
+				+ ", loginIp=" + loginIp + ", imagePath=" + imagePath + "]\n";
 	}
 	public Users(String username, String password, Character sex, Date birthday) {
 		super();

@@ -17,8 +17,7 @@ import javax.servlet.http.HttpSession;
 //import jxl.write.WritableSheet;
 //import jxl.write.WritableWorkbook;
 //import jxl.write.WriteException;
-//import service.UserService;
-//import util.PageUtil;
+
 import net.ptcs.my12306.entity.Users;
 import net.ptcs.my12306.service.UserService;
 import net.ptcs.my12306.util.PageUtil;
@@ -47,7 +46,7 @@ public class AdminManageUserServlet extends HttpServlet {
 		}else if("queryUserByPage".equals(operator)) {
 			queryUserByPage(request,response);
 		}else if("exportExcel".equals(operator)) {
-			exportExcel(request,response);
+//			exportExcel(request,response);
 		}
 	}
 
@@ -58,55 +57,55 @@ public class AdminManageUserServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	private void exportExcel(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
-
-		HttpSession session =request.getSession();
-		List<Users> users=(List<Users>)session.getAttribute("users");
-		
-		if(users==null||users.size()==0)
-		{
-			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().println("<script>alert('请先查询');</script>");
-		}else
-		{
-		response.setHeader("Content-disposition", "attachment; filename="
-				+ new String("用户".getBytes("GB2312"), "8859_1") + 
-				".xls");
-				response.setHeader("pragma", "no-cache");
-				response.setContentType("application/msexcel");
-				ServletOutputStream os = response.getOutputStream();
-				WritableWorkbook workbook = Workbook.createWorkbook(os);
-				
-				WritableSheet ws = workbook.createSheet("用户列表", 0);
-				
-				try {
-					//ws.addCell(new Label(0, 0, 100+""));
-					//首先写表头：id username
-					ws.addCell(new Label(0, 0, "id"));
-					ws.addCell(new Label(1, 0, "username"));
-					System.out.println("users 中一共有"+users.size()+"条数据");
-					for(int row=1;row<=users.size();row++)
-					{
-						Users user=users.get(row-1);
-						ws.addCell(new Label(0, row, user.getId()+""));
-						ws.addCell(new Label(1, row, user.getUsername()));
-					}
-					
-					workbook.write();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}finally
-				{
-					try {
-						workbook.close();
-					} catch (WriteException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-		}	
-		
-	}
+//	private void exportExcel(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+//
+//		HttpSession session =request.getSession();
+//		List<Users> users=(List<Users>)session.getAttribute("users");
+//		
+//		if(users==null||users.size()==0)
+//		{
+//			response.setContentType("text/html;charset=utf-8");
+//			response.getWriter().println("<script>alert('请先查询');</script>");
+//		}else
+//		{
+//		response.setHeader("Content-disposition", "attachment; filename="
+//				+ new String("用户".getBytes("GB2312"), "8859_1") + 
+//				".xls");
+//				response.setHeader("pragma", "no-cache");
+//				response.setContentType("application/msexcel");
+//				ServletOutputStream os = response.getOutputStream();
+//				WritableWorkbook workbook = Workbook.createWorkbook(os);
+//				
+//				WritableSheet ws = workbook.createSheet("用户列表", 0);
+//				
+//				try {
+//					//ws.addCell(new Label(0, 0, 100+""));
+//					//首先写表头：id username
+//					ws.addCell(new Label(0, 0, "id"));
+//					ws.addCell(new Label(1, 0, "username"));
+//					System.out.println("users 中一共有"+users.size()+"条数据");
+//					for(int row=1;row<=users.size();row++)
+//					{
+//						Users user=users.get(row-1);
+//						ws.addCell(new Label(0, row, user.getId()+""));
+//						ws.addCell(new Label(1, row, user.getUsername()));
+//					}
+//					
+//					workbook.write();
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}finally
+//				{
+//					try {
+//						workbook.close();
+//					} catch (WriteException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				}
+//		}	
+//		
+//	}
 	
 	/**
 	 * 根据页码查询对应页码数据的方法
@@ -158,7 +157,13 @@ public class AdminManageUserServlet extends HttpServlet {
 		request.setAttribute("userList", pageUtil.getUsers_page());//把查询结果users传给userlist.jsp页面
 		request.setAttribute("pagesum", pageUtil.getPagesum());//总页数
 		request.setAttribute("pageNumber", pageUtil.getPageNumber());//页码
-		request.getRequestDispatcher("/admin/userlist.jsp").forward(request, response);
+		try {
+			request.getRequestDispatcher("/admin/userlist.jsp").forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
