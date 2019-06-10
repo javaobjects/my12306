@@ -255,7 +255,7 @@ function selectAllNullorReserve(obj,type){
               <input name="Submit22" type="button" class="butsc" value="">
             </a></td>
             <td width="91" align="right"  class="text_cray1"><label>
-              <input name="Submit3" type="submit" class="butdc" value="" onclick="exportExcel()">
+              <input name="Submit3" type="button" class="butdc" value="" onclick="exportExcel()">
             </label></td>
           </tr>
         </table>

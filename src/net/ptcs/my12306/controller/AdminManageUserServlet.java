@@ -47,7 +47,7 @@ public class AdminManageUserServlet extends HttpServlet {
 		}else if("queryUserByPage".equals(operator)) {
 			queryUserByPage(request,response);
 		}else if("exportExcel".equals(operator)) {
-//			exportExcel(request,response);
+			exportExcel(request,response);
 		}
 	}
 
@@ -100,7 +100,6 @@ public class AdminManageUserServlet extends HttpServlet {
 					try {
 						workbook.close();
 					} catch (WriteException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
