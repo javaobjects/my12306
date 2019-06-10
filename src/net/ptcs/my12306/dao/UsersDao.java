@@ -11,7 +11,7 @@ import net.ptcs.my12306.entity.City;
 import net.ptcs.my12306.entity.Province;
 import net.ptcs.my12306.entity.UserType;
 import net.ptcs.my12306.entity.Users;
-import net.ptcs.my12306.util.DBUtils;
+import net.ptcs.my12306.util.DBUtils_pool;
 
 public class UsersDao {
 
@@ -45,7 +45,7 @@ public class UsersDao {
 		PreparedStatement stmt = null;
 		try {
 
-			conn = DBUtils.getConnection();
+			conn = DBUtils_pool.getConnection();
 			stmt = conn.prepareStatement(ADD_USER);
 			stmt.setString(1, user.getUsername());
 			stmt.setString(2, user.getPassword());
@@ -58,7 +58,7 @@ public class UsersDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.release(conn, stmt, null);
+			DBUtils_pool.release(conn, stmt, null);
 		}
 
 		return rows;
@@ -90,7 +90,7 @@ public class UsersDao {
 		ResultSet rs=null;
 		try {
 
-			conn = DBUtils.getConnection();
+			conn = DBUtils_pool.getConnection();
 			stmt = conn.prepareStatement(QUERY_USERNAME);
 			stmt.setString(1,username);
 			
@@ -106,7 +106,7 @@ public class UsersDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.release(conn, stmt, rs);
+			DBUtils_pool.release(conn, stmt, rs);
 		}
 
 		return result;
@@ -126,7 +126,7 @@ public class UsersDao {
 		ResultSet rs=null;
 		try {
 
-			conn = DBUtils.getConnection();
+			conn = DBUtils_pool.getConnection();
 			stmt = conn.prepareStatement(QUERY_USER_BY_USERNAME_AND_PASSWORD);
 			stmt.setString(1,username);
 			stmt.setString(2,password);
@@ -161,7 +161,7 @@ public class UsersDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.release(conn, stmt, rs);
+			DBUtils_pool.release(conn, stmt, rs);
 		}
 		return user;
 	}
@@ -174,7 +174,7 @@ public class UsersDao {
 			//这些待更新的数据：真实姓名 性 别   城市 证件类型 证件号码 出生日期 旅客类型 备注
 			String update_user_sql="update tab_user set realname=?,sex=?,city=?,cert_type=?,cert=?,"
 					+ "birthday=?,user_type=?,content=? where id=?";
-			conn=DBUtils.getConnection();
+			conn=DBUtils_pool.getConnection();
 			stmt=conn.prepareStatement(update_user_sql);
 			stmt.setString(1, user.getRealname());
 			stmt.setString(2, user.getSex() + "");
@@ -190,7 +190,7 @@ public class UsersDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBUtils.release(conn, stmt, null);
+			DBUtils_pool.release(conn, stmt, null);
 		}
 		return rows;
 	}
@@ -208,7 +208,7 @@ public class UsersDao {
 		ResultSet rs=null;
 		try {
 
-			conn = DBUtils.getConnection();
+			conn = DBUtils_pool.getConnection();
 			stmt = conn.prepareStatement("select * from tab_user where id=? and password=?");
 			stmt.setInt(1,id);
 			stmt.setString(2, password_old);
@@ -220,7 +220,7 @@ public class UsersDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.release(conn, stmt, rs);
+			DBUtils_pool.release(conn, stmt, rs);
 		}
 
 		return result;
@@ -233,7 +233,7 @@ public class UsersDao {
 		try {
 			//这些待更新的数据：真实姓名 性 别   城市 证件类型 证件号码 出生日期 旅客类型 备注
 			String update_user_sql="update tab_user set password=? where id=?";
-			conn=DBUtils.getConnection();
+			conn=DBUtils_pool.getConnection();
 			stmt=conn.prepareStatement(update_user_sql);
 			stmt.setString(1,password_new);
 			stmt.setInt(2,id);
@@ -242,7 +242,7 @@ public class UsersDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			DBUtils.release(conn, stmt, null);
+			DBUtils_pool.release(conn, stmt, null);
 		}
 	}
 
@@ -264,7 +264,7 @@ public class UsersDao {
 		ResultSet rs=null;
 		try {
 
-			conn = DBUtils.getConnection();
+			conn = DBUtils_pool.getConnection();
 			
 			StringBuffer query_user=new StringBuffer("select u.id,u.username,u.sex,u.cert,"
 					+ "ct.id ct_id,ct.content ct_content,"
@@ -303,7 +303,7 @@ public class UsersDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			DBUtils.release(conn, stmt, rs);
+			DBUtils_pool.release(conn, stmt, rs);
 		}
 
 		return users;
