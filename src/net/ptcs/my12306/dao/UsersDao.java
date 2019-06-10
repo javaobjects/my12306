@@ -3,6 +3,8 @@ package net.ptcs.my12306.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.ptcs.my12306.entity.CertType;
 import net.ptcs.my12306.entity.City;
@@ -243,6 +245,68 @@ public class UsersDao {
 			DBUtils.release(conn, stmt, null);
 		}
 	}
-	
+
+	/**
+	 * 根据给定条件查询用户信息：组合查询
+	 * @param username
+	 * @param certtype
+	 * @param cert
+	 * @param usertype
+	 * @param sex
+	 * @return
+	 */
+	public List<Users> queryUserByCondition(String username, int certtype,
+			String cert, int usertype, char sex) {
+		List<Users> users=new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs=null;
+		try {
+
+			conn = DBUtils.getConnection();
+			
+			StringBuffer query_user=new StringBuffer("select u.id,u.username,u.sex,u.cert,"
+					+ "ct.id ct_id,ct.content ct_content,"
+					+ "ut.id ut_id,ut.content ut_content "
+					+ "from tab_user u,tab_usertype ut,tab_certtype ct "
+					+ "where ut.id=u.user_type and ct.id=u.cert_type and sex='"+sex+
+					"' and cert_type="+certtype+" and user_type="+usertype);
+			if(username!=null&& !"".equals(username.trim()))
+			{
+				query_user.append(" and username like '%"+username.trim()+"%'");
+			}
+			if(cert!=null && !"".equals(cert.trim()))
+			{
+				query_user.append(" and cert='"+cert+"'");
+			}
+			
+			stmt = conn.prepareStatement(query_user.toString());
+			
+			
+			rs=stmt.executeQuery();
+			Users user=null;
+			while(rs.next())
+			{
+				user=new Users();
+				
+				user.setId(rs.getInt("id"));
+				user.setUsername(rs.getString("username"));
+				user.setSex(rs.getString("sex").charAt(0));
+				user.setCerttype(new CertType(rs.getInt("ct_id"), rs.getString("ct_content")));
+				user.setCert(rs.getString("cert"));
+				user.setUsertype(new UserType(rs.getInt("ut_id"),rs.getString("ut_content")));
+				
+				users.add(user);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.release(conn, stmt, rs);
+		}
+
+		return users;
+	}
 	
 }
