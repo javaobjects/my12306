@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//import jxl.Workbook;
-//import jxl.write.Label;
-//import jxl.write.WritableSheet;
-//import jxl.write.WritableWorkbook;
-//import jxl.write.WriteException;
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+
 
 import net.ptcs.my12306.entity.Users;
 import net.ptcs.my12306.service.UserService;
@@ -57,55 +58,55 @@ public class AdminManageUserServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-//	private void exportExcel(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
-//
-//		HttpSession session =request.getSession();
-//		List<Users> users=(List<Users>)session.getAttribute("users");
-//		
-//		if(users==null||users.size()==0)
-//		{
-//			response.setContentType("text/html;charset=utf-8");
-//			response.getWriter().println("<script>alert('请先查询');</script>");
-//		}else
-//		{
-//		response.setHeader("Content-disposition", "attachment; filename="
-//				+ new String("用户".getBytes("GB2312"), "8859_1") + 
-//				".xls");
-//				response.setHeader("pragma", "no-cache");
-//				response.setContentType("application/msexcel");
-//				ServletOutputStream os = response.getOutputStream();
-//				WritableWorkbook workbook = Workbook.createWorkbook(os);
-//				
-//				WritableSheet ws = workbook.createSheet("用户列表", 0);
-//				
-//				try {
-//					//ws.addCell(new Label(0, 0, 100+""));
-//					//首先写表头：id username
-//					ws.addCell(new Label(0, 0, "id"));
-//					ws.addCell(new Label(1, 0, "username"));
-//					System.out.println("users 中一共有"+users.size()+"条数据");
-//					for(int row=1;row<=users.size();row++)
-//					{
-//						Users user=users.get(row-1);
-//						ws.addCell(new Label(0, row, user.getId()+""));
-//						ws.addCell(new Label(1, row, user.getUsername()));
-//					}
-//					
-//					workbook.write();
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}finally
-//				{
-//					try {
-//						workbook.close();
-//					} catch (WriteException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//				}
-//		}	
-//		
-//	}
+	private void exportExcel(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+
+		HttpSession session =request.getSession();
+		List<Users> users=(List<Users>)session.getAttribute("users");
+		
+		if(users==null||users.size()==0)
+		{
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().println("<script>alert('请先查询');</script>");
+		}else
+		{
+		response.setHeader("Content-disposition", "attachment; filename="
+				+ new String("用户".getBytes("GB2312"), "8859_1") + 
+				".xls");
+				response.setHeader("pragma", "no-cache");
+				response.setContentType("application/msexcel");
+				ServletOutputStream os = response.getOutputStream();
+				WritableWorkbook workbook = Workbook.createWorkbook(os);
+				
+				WritableSheet ws = workbook.createSheet("用户列表", 0);
+				
+				try {
+					//ws.addCell(new Label(0, 0, 100+""));
+					//首先写表头：id username
+					ws.addCell(new Label(0, 0, "id"));
+					ws.addCell(new Label(1, 0, "username"));
+					System.out.println("users 中一共有"+users.size()+"条数据");
+					for(int row=1;row<=users.size();row++)
+					{
+						Users user=users.get(row-1);
+						ws.addCell(new Label(0, row, user.getId()+""));
+						ws.addCell(new Label(1, row, user.getUsername()));
+					}
+					
+					workbook.write();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally
+				{
+					try {
+						workbook.close();
+					} catch (WriteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+		}	
+		
+	}
 	
 	/**
 	 * 根据页码查询对应页码数据的方法
