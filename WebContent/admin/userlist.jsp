@@ -76,35 +76,36 @@ function selectAllNullorReserve(obj,type){
         <td width="5"></td>
         <td width="4%" height="25" align="left" class="text_cray1">姓名</td>
         <td width="11%" align="left" class="text_cray1"><label>
-          <input name="textfield" type="text" class="text_cray" style="width:80px">
+          <input name="textfield" type="text" class="text_cray" style="width:80px" value="${username}">
         </label></td>
         <td width="6%" align="center" class="text_cray1">性别</td>
         <td width="6%" align="left" class="text_cray1"><label>
-          <select name="select" class="text_cray">
-            <option value="N">男</option>
-            <option value="M">女</option>
+ 		  <select name="sex" class="text_cray">
+            <option value="1" ${sex.equals("1")?"selected":"" }>男</option>
+            <option value="2" ${sex.equals("2")?"selected":"" }>女</option>
           </select>
-        </label></td>
+        </label>
+        </td>
         <td width="9%" align="center" class="text_cray1">证件类型</td>
         <td width="13%" align="left" class="text_cray1"><label>
-          <select class="text_cray" name="loginUserDTO.id_type_code" id="cardType">
-            <option value="1">二代身份证</option>
-            <option value="C">港澳通行证 </option>
-            <option value="G">台湾通行证</option>
-            <option value="B">护照</option>
+          <select class="text_cray" name="cert_type" id="cardType">
+            <option value="1" ${cert_type.equals("1")?"selected":"" }>二代身份证</option>
+            <option value="2" ${cert_type.equals("2")?"selected":"" }>港澳通行证 </option>
+            <option value="3" ${cert_type.equals("3")?"selected":"" }>台湾通行证</option>
+            <option value="4" ${cert_type.equals("4")?"selected":"" }>护照</option>
           </select>
         </label></td>
         <td width="8%" align="center" class="text_cray1">证件号码</td>
         <td width="13%" align="left" class="text_cray1"><label>
-          <input name="textfield2" type="text" class="text_cray" style="width:100px">
+          <input name="textfield2" type="text" class="text_cray" style="width:100px" value="${cert}">
         </label></td>
         <td width="8%" align="center" class="text_cray1">旅客类型</td>
         <td width="13%" align="left" class="text_blod"><label>
-          <select class="text_cray" id="passengerType" name="passenger_type" style="width:100px">
-            <option value="1">成人</option>
-            <option value="2">儿童</option>
-            <option value="3">学生</option>
-            <option value="4">残疾军人、伤残人民警察</option>
+          <select class="text_cray" id="passengerType" name="user_type" style="width:100px">
+            <option value="1" ${user_type.equals("1")?"selected":"" }>成人</option>
+            <option value="2" ${user_type.equals("2")?"selected":"" }>儿童</option>
+            <option value="3" ${user_type.equals("3")?"selected":"" }>学生</option>
+            <option value="4" ${user_type.equals("4")?"selected":"" }>残疾军人、伤残人民警察</option>
           </select>
         </label></td>
         <td width="8%" align="center" valign="middle" class="text_craybold"><label>
@@ -129,7 +130,23 @@ function selectAllNullorReserve(obj,type){
           <tr align="center">
             <td height="15" colspan="7" bordercolor="#FFFFFF" bgcolor="#FFFFFF"   class="text_cray1"><img src="../images/line1.jpg" width="790" height="6"></td>
           </tr>
-          <tr align="center" bgcolor="#FFFFFF">
+          
+           <c:forEach items="${userList}" var="u" varStatus="status">
+          
+          <tr align="center">
+            <td bordercolor="#FFFFFF"   class="text_cray1"><input type="checkbox" name="checkbox" value="${u.id}">            </td>
+            <td width="98" bordercolor="#FFFFFF"  class="text_cray1">${u.username}</td>
+            <td width="80" bordercolor="#FFFFFF"  class="text_cray1">${u.sex==49?"男":"女"}</td>
+            <td width="132" bordercolor="#FFFFFF"  class="text_cray1">${u.certtype.content}</td>
+            <td width="247" bordercolor="#FFFFFF"  class="text_cray1">${u.cert}</td>
+            <td width="82" bordercolor="#FFFFFF"  class="text_cray1">${u.usertype.content}</td>
+            <td width="89" bordercolor="#FFFFFF"  class="text_cray1"><a href="UserManageInfo_Amind_Edit.html" class="text_red">编辑</a></td>
+          </tr>
+          
+          </c:forEach>
+          
+          
+        <!--   <tr align="center" bgcolor="#FFFFFF">
             <td bordercolor="#FFFFFF"   class="text_cray1"><input type="checkbox" name="checkbox" value="1">            </td>
             <td width="98" bordercolor="#FFFFFF"  class="text_cray1">用户1</td>
             <td width="80" bordercolor="#FFFFFF"  class="text_cray1">男</td>
@@ -218,7 +235,7 @@ function selectAllNullorReserve(obj,type){
             <td width="247" bordercolor="#FFFFFF" bgcolor="#F5F5F5"  class="text_cray1">210211197012081019</td>
             <td width="82" bordercolor="#FFFFFF" bgcolor="#F5F5F5"  class="text_cray1">成人</td>
             <td width="89" bordercolor="#FFFFFF" bgcolor="#F5F5F5"  class="text_cray1"><a href="UserManageInfo_Amind_Edit.html" class="text_red">编辑</a></td>
-          </tr>
+          </tr> -->
         </table>
       <br>
         <table width="773" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -236,21 +253,57 @@ function selectAllNullorReserve(obj,type){
               <input name="Submit22" type="button" class="butsc" value="">
             </a></td>
             <td width="91" align="right"  class="text_cray1"><label>
-              <input name="Submit3" type="submit" class="butdc" value="">
+              <input name="Submit3" type="submit" class="butdc" value="" onclick="exportExcel()">
             </label></td>
           </tr>
         </table>
+           <script>
+		        function exportExcel()
+		        {
+		        	window.location.href="AdminManageUserServlet?operator=exportExcel";
+		        }
+        
+          </script>
       <br>
         <table width="773" border="0" align="center" cellpadding="0" cellspacing="0">
           <tr align="center" style="width:60%">
             <td width="335" align="center"  class="text_cray">&nbsp;</td>
-            <td width="284" align="center"  class="text_cray">>> 1 2 3 4 5 6 7 8 &lt;&lt; </td>
+              <td width="284" align="center"  class="text_cray">>> 
+            
+            
+            <% Integer pagesum=(Integer)request.getAttribute("pagesum");
+      			Integer pageNumber=(Integer)request.getAttribute("pageNumber");
+      if(pagesum!=null&&pagesum!=0)
+      {
+      for(int i=1;i<=pagesum;i++)
+      {
+      	if(i==pageNumber)
+      	{
+      %>
+      	<a href="#" style="text-decoration: none"><%=i%>&nbsp;&nbsp;</a>
+      <%}else{ %>
+     <a href="#" onclick="queryUserByPage(<%=i%>)"><%=i%>&nbsp;&nbsp;</a>
+      <%}}} %>
+            
+         <script>
+         function queryUserByPage(i)
+         {
+        	// alert(1);
+        	 var form=document.getElementById("form1");
+        	 form.action="AdminManageUserServlet?operator=queryUserByPage&pageNumber="+i;
+        	 form.submit();
+        	 form.action="AdminManageUserServlet?operator=queryUser";//请还原，否则点击查询按钮会分页查询
+         }
+         
+         
+         </script>   
+             &lt;&lt; </td>
             <td width="154" align="right"  class="text_cray1" style="width:20%"><label class="text_cray"> 每页显示
-                <select name="select2">
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                  </select>
+       			<select name="pageCount">
+                    <option value="10" ${pageCount.equals("10")?"selected":""}>10</option>
+                    <option value="20" ${pageCount.equals("20")?"selected":""}>20</option>
+                    <option value="30" ${pageCount.equals("30")?"selected":""}>30</option>
+                </select>
             条信息</label></td>
           </tr>
         </table>
