@@ -80,3 +80,22 @@ index.jsp的framest下的frame的top.jsp路径不对
 **原因：** 在浏览器访问web项目的时候发现的，错误提示标签库没有在web.xml定义，同时其他jar包中也没有出现。
 
 **解决方法：** 在tomcat下将jstl-1.2jar放入到lib文件夹下，重新启动tomcat即可！
+
+5. eclipse提交git远程仓库成功而git远程仓库未显示有提交用gitBash提交显示如下错错误
+
+![](WebContent/images/bug_5.png)
+
+**原因：** 可能是因为某个文件不在本地代码目录中
+
+**解决方法:**
+```
+1. git pull --rebase origin master//代码合并
+2. git push origin master//提交代码
+```
+6. HTTP Status 500 - Servlet execution threw an exception
+
+![](WebContent/images/bug_6.png)
+
+**原因：** 命名未统一
+![](WebContent/images/bug_6_yuanyin.png)
+**解决方法：将其命名弄统一**
