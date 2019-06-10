@@ -16,21 +16,22 @@ import javax.servlet.http.HttpSession;
 import net.ptcs.my12306.entity.Users;
 
 /**
- * Servlet Filter implementation class AccessFilter
+ * 对访问进行控制的过滤器类
+ * @author xianxian
+ *
  */
 @WebFilter(description = "对访问进行控制的过滤器类", urlPatterns = { "/AccessFilter" })
 public class AccessFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		//这行代码保证多个过滤器依次执行
+		//这行代码保证多个过滤器依次执行 chain.doFilter(request,response);
 		/**
 		 * 如何进行访问权限控制？
 		 * 思路：
@@ -44,12 +45,12 @@ public class AccessFilter implements Filter {
 		 */
 		HttpServletRequest res = null;
 		if(request instanceof HttpServletRequest) {
-			request = (HttpServletRequest)request;
+			res = (HttpServletRequest)request;
 		}
 		
 		HttpServletResponse resp = null;
 		if(response instanceof HttpServletResponse) {
-			response = (HttpServletResponse)response;
+			resp = (HttpServletResponse)response;
 		}
 		
 		String url = res.getRequestURL().toString();
@@ -97,10 +98,6 @@ public class AccessFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
 		
 	}
-
-
-
 }
