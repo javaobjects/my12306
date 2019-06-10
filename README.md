@@ -100,4 +100,8 @@ index.jsp的framest下的frame的top.jsp路径不对
 ![](WebContent/images/bug_6_yuanyin.png)
 **解决方法：将其命名弄统一**
 ```
+	public List<Users> getUserByCondition(String username, int certtype, String cert, int usertype, char sex) {
+
+		return userDao.queryUserByCondition(username,certtype,cert,usertype,sex);
+	}
 ```
