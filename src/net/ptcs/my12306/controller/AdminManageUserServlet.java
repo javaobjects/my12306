@@ -84,14 +84,23 @@ public class AdminManageUserServlet extends HttpServlet {
 					//首先写表头：id username
 					ws.addCell(new Label(0, 0, "id"));
 					ws.addCell(new Label(1, 0, "username"));
+					//此处增加应该展示的数据内容
+					ws.addCell(new Label(2,0,"sex"));
+					ws.addCell(new Label(3,0,"cert_type"));
+					ws.addCell(new Label(4,0,"cert"));
+					ws.addCell(new Label(5,0,"user_type"));
+					
 					System.out.println("users 中一共有"+users.size()+"条数据");
 					for(int row=1;row<=users.size();row++)
 					{
 						Users user=users.get(row-1);
 						ws.addCell(new Label(0, row, user.getId()+""));
 						ws.addCell(new Label(1, row, user.getUsername()));
+						ws.addCell(new Label(2, row, user.getSex() == 49 ? "男" : "女"));
+//						ws.addCell(new Label(3, row, user.getCerttype()));
+						ws.addCell(new Label(4, row, user.getCert()));
+//						ws.addCell(new Label(5, row, user.getUsertype()));
 					}
-					
 					workbook.write();
 				} catch (Exception e) {
 					e.printStackTrace();

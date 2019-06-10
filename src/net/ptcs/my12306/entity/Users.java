@@ -15,7 +15,7 @@ public class Users {
 	private String realname;
 	private Character sex;//性别(1、男 2、女)
 	private City city;
-	private CertType certtype;
+	private CertType certtype;//证件类型1、二代身份证 2、港澳通行证 3、台湾通行证 4、护照
 	private String cert;//证件号码
 	private Date birthday;
 	private UserType usertype;
