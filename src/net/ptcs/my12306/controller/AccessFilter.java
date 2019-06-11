@@ -73,7 +73,7 @@ public class AccessFilter implements Filter {
 					resp.sendRedirect(res.getContextPath() + "/login.jsp");
 				}
 			}else {
-				//没有登录重定向到登录页面
+				//没有登录重定向到登录页面 
 				resp.sendRedirect(res.getContextPath() + "/login.jsp");
 			}
 		}else if(url.contains("/user/")) {

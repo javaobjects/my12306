@@ -10,7 +10,4 @@
 	maxIdle="2"
 	maxWait="5000"
 	maxActive="4" />
-	
-	
-	
 </Context>
