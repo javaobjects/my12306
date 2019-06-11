@@ -57,7 +57,7 @@ response.setCharacterEncoding("utf-8");
             <td width="98" height="40" align="left" class="text_cray1">登录名：</td>
             <td width="160" align="left" class="text_cray1">
             <input name="username" type="text" class="text_cray" id="textfield2" />
-            <span class="span_username"></span>
+            <span id="span_username"></span>
             </td>
             <td width="423" height="35" align="left" class="text_cray">由字母、数字或“_”组成，长度不少于6位，不多于30位</td>
             <script>
@@ -75,30 +75,27 @@ response.setCharacterEncoding("utf-8");
          		}else {
          			//alert("Your browser does not support XMLHTTP.");
          		}
-         		//alert(xmlHttpRequest==null);
          		
          		//创建ajax引擎对象之后需要做什么？
          		
          		//2.需要获取用户名
          		  let username = document.querySelector("#textfield2").value;
-         		//alert(username);
          		//1.需要创建一个请求url
-         		//alert("发送之前："+xmlHttpRequest.readyState);
-         		xmlHttpRequest.open("get","UserServlet?operator=checkUsername&username="+username,true);
+         		xmlHttpRequest.open("get","CheckNameServlet?username="+username,true);
+         		
+         		
          		//3.需要指定回调函数
          		//刚开始readyState是0
          		xmlHttpRequest.onreadystatechange = () => {  	//获取校验结果的回调函数
  		            //alert("发送之后："+xmlHttpRequest.readyState);//1,2,3,4
-              if(xmlHttpRequest.readyState==4&&xmlHttpRequest.status==200)
+              if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200)
          			{
-         				console.info("ok");
-         				//alert(xmlHttpRequest.responseText);
-                 let span_username = document.querySelector(".span_username");
+                 let span_username = document.querySelector("#span_username");
                  if(xmlHttpRequest.responseText == "可用"){
-                  span_username.setAttribute("style","");
+                  span_username.style.cssText = ""
                   span_username.innerText = xmlHttpRequest.responseText;
                  }else{
-                  span_username.setAttribute("style","color:red;");
+                  span_username.style.cssText = "color:red;"
                   span_username.innerText = xmlHttpRequest.responseText;
                  }
          			}

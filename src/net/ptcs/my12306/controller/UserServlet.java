@@ -25,6 +25,7 @@ public class UserServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		
 		/*
 		 stmt.setString(1, user.getUsername());
 			stmt.setString(2, user.getPassword());
@@ -38,19 +39,6 @@ public class UserServlet extends HttpServlet {
 		String confirm_password=request.getParameter("confirm_password");
 		String sex=request.getParameter("sex");
 		String birthday_date=request.getParameter("birthday");
-		
-		
-		System.out.println("username:"+username);
-		UserService userService=UserService.getInstance();
-		if(userService.isExistsUserName(username)) {
-			System.out.println("no");
-			//返回客户端结果：不可用
-			response.getWriter().println("不可用");
-		}else {
-			System.out.println("yes");
-			//返回客户端结果：可用
-			response.getWriter().println("可用");
-		}
 		
 		//2.数据的非空校验和合法性校验
 		StringBuffer sb = validateRegisterForm(username, password, confirm_password);
@@ -68,7 +56,7 @@ public class UserServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-//			UserService userService=UserService.getInstance();
+			UserService userService=UserService.getInstance();
 			
 			Users user = new Users(request.getParameter("username"), request.getParameter("password"), 
 					request.getParameter("sex").charAt(0), birthday);
