@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 使用jstl:java standard tag library(单词缩写)
+ 1.需要先导入jstl.jar包 2.页面通过指令引入标签  3.使用标签 -->   
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE HTML>
 <html>
 
@@ -191,7 +194,7 @@ response.setCharacterEncoding("utf-8");
                         xhr.onreadystatechange = () => {//获取服务端响应的信息，把数据取出来放入城市下拉框
                           if (xhr.readyState == 4) {
                             if (xhr.status == 200) {
-                              //获取响应的xml文档
+                              //获取响应的xml文档 (此处生成的是一个xml文件)
                               let doc = xhr.responseXML;
                               let city_all = doc.getElementsByTagName("city");//这是一个存放所有city的数组
 
@@ -225,7 +228,7 @@ response.setCharacterEncoding("utf-8");
                         <option value="B"><span>护照</span> </option>
                       </select> </td>
                   </tr>
-                  <tr>
+                  <tr> 
                     <td width="19" align="center" class="text_red1"><span class="text_red">*</span></td>
                     <td width="98" height="40" align="left" class="text_cray1">证件号码：</td>
                     <td height="35" colspan="3" align="left"><input name="textfield6" type="text" class="text_cray"

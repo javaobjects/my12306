@@ -77,7 +77,7 @@
 									<tr>
 										<td align="center">
 											<input name="uploadFile" type="file" class="text_cray" size="20" />
-											<input type="button" value="上传" id="btn_uploadFile" />
+											<input type="button" value="上传" id="btn_uploadFile" style="position: relative;top: -21px;left: 70px;"/>
 										</td>
 									</tr>
 								</table>
