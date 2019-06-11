@@ -39,6 +39,19 @@ public class UserServlet extends HttpServlet {
 		String sex=request.getParameter("sex");
 		String birthday_date=request.getParameter("birthday");
 		
+		
+		System.out.println("username:"+username);
+		UserService userService=UserService.getInstance();
+		if(userService.isExistsUserName(username)) {
+			System.out.println("no");
+			//返回客户端结果：不可用
+			response.getWriter().println("不可用");
+		}else {
+			System.out.println("yes");
+			//返回客户端结果：可用
+			response.getWriter().println("可用");
+		}
+		
 		//2.数据的非空校验和合法性校验
 		StringBuffer sb = validateRegisterForm(username, password, confirm_password);
 		
@@ -55,7 +68,7 @@ public class UserServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			UserService userService=UserService.getInstance();
+//			UserService userService=UserService.getInstance();
 			
 			Users user = new Users(request.getParameter("username"), request.getParameter("password"), 
 					request.getParameter("sex").charAt(0), birthday);
@@ -71,8 +84,13 @@ public class UserServlet extends HttpServlet {
 				//用户名已经存在，回到注册页面
 				request.setAttribute("message", "用户名已被占用");
 				request.getRequestDispatcher("/user_register.jsp").forward(request, response);
+				
+		
 			}else
 			{
+		
+				
+				
 				if(userService.register(user))
 				{
 					//System.out.println("register success");
@@ -100,8 +118,16 @@ public class UserServlet extends HttpServlet {
 					request.setAttribute("message", "注册失败");
 					request.getRequestDispatcher("/user_register.jsp").forward(request, response);
 				}
+				
+				
+				
 			}
 		}
+		
+		
+		
+		
+		
 	}
 	/**
 	 * 对表单进行服务端校验的方法 

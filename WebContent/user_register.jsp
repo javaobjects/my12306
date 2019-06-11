@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><!DOCTYPE HTML>
+    pageEncoding="UTF-8"%>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -53,10 +54,61 @@ response.setCharacterEncoding("utf-8");
           
           <tr>
             <td width="19" align="center" class="text_red">*</td>
-                  <td width="98" height="40" align="left" class="text_cray1">登录名：</td>
-                  <td width="160" align="left" class="text_cray1"><input name="username" type="text" class="text_cray" id="textfield2" /></td>
-                  <td width="423" height="35" align="left" class="text_cray">由字母、数字或“_”组成，长度不少于6位，不多于30位</td>
-                </tr>
+            <td width="98" height="40" align="left" class="text_cray1">登录名：</td>
+            <td width="160" align="left" class="text_cray1">
+            <input name="username" type="text" class="text_cray" id="textfield2" />
+            <span class="span_username"></span>
+            </td>
+            <td width="423" height="35" align="left" class="text_cray">由字母、数字或“_”组成，长度不少于6位，不多于30位</td>
+            <script>
+           let btn_username = document.querySelector("#textfield2");
+              	//定义XMLHttpRequest对象
+           let xmlHttpRequest;
+           btn_username.onblur = () => {
+         		//alert();
+         		//把ajax引擎对象XMLHttpRequest实例化
+         		xmlHttpRequest = null;
+         		if (window.XMLHttpRequest) {// code for all new browsers
+         			xmlHttpRequest = new XMLHttpRequest();
+         		} else if (window.ActiveXObject) {// code for IE5 and IE6
+         			xmlHttpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+         		}else {
+         			//alert("Your browser does not support XMLHTTP.");
+         		}
+         		//alert(xmlHttpRequest==null);
+         		
+         		//创建ajax引擎对象之后需要做什么？
+         		
+         		//2.需要获取用户名
+         		  let username = document.querySelector("#textfield2").value;
+         		//alert(username);
+         		//1.需要创建一个请求url
+         		//alert("发送之前："+xmlHttpRequest.readyState);
+         		xmlHttpRequest.open("get","UserServlet?operator=checkUsername&username="+username,true);
+         		//3.需要指定回调函数
+         		//刚开始readyState是0
+         		xmlHttpRequest.onreadystatechange = () => {  	//获取校验结果的回调函数
+ 		            //alert("发送之后："+xmlHttpRequest.readyState);//1,2,3,4
+              if(xmlHttpRequest.readyState==4&&xmlHttpRequest.status==200)
+         			{
+         				console.info("ok");
+         				//alert(xmlHttpRequest.responseText);
+                 let span_username = document.querySelector(".span_username");
+                 if(xmlHttpRequest.responseText == "可用"){
+                  span_username.setAttribute("style","");
+                  span_username.innerText = xmlHttpRequest.responseText;
+                 }else{
+                  span_username.setAttribute("style","color:red;");
+                  span_username.innerText = xmlHttpRequest.responseText;
+                 }
+         			}
+             };
+         		//4.发送请求
+         		
+         		xmlHttpRequest.send();
+           }
+           </script>
+          </tr>
           <tr>
             <td width="19" align="center" class="text_red1"><span class="text_red">*</span></td>
                   <td width="98" height="40" align="left" class="text_cray1">密码：</td>
@@ -146,21 +198,12 @@ response.setCharacterEncoding("utf-8");
             <tr>
               <td height="10" colspan="5" align="center">	</td>
 	            </tr>
-            
-            
-            
-            
-            
-            
             <tr>
               <td width="19" align="center">&nbsp;</td>
                   <td width="98" height="30" align="left" class="text_cray1">备注：</td>
                   <td colspan="3" align="left" height="80">
                   <textarea name="textarea" rows="8" class="text_cray" style="width:100%"></textarea>				</td>
                 </tr>
-            
-            
-            
             <tr>
               <td align="center">&nbsp;</td>
                   <td height="30" align="left" class="text_cray1"></td>
