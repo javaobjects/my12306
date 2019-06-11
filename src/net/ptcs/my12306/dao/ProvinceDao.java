@@ -11,7 +11,7 @@ import net.ptcs.my12306.util.DBUtils_pool;
 
 public class ProvinceDao {
 
-	private static final String QUERY_ALL_PROVINCE = "select id,provinceid,province from tab_province";
+	private static final String QUERY_ALL_PROVINCE = "select id,provinceid,province from my12306_tab_province";
 	/**
      * 查询所有省份的方法
 	 * @return

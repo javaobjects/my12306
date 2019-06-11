@@ -76,9 +76,7 @@ public class UserServlet extends HttpServlet {
 		
 			}else
 			{
-		
-				
-				
+
 				if(userService.register(user))
 				{
 					//System.out.println("register success");

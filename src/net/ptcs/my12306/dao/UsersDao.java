@@ -24,17 +24,17 @@ public class UsersDao {
 	 * status CHAR(1) default '1' not null, login_ip VARCHAR2(50), image_path
 	 * VARCHAR2(200)
 	 */
-	private static final String ADD_USER = "insert into tab_user(id,username,password,rule,realname,sex,city,cert_type"
+	private static final String ADD_USER = "insert into my12306_tab_user(id,username,password,rule,realname,sex,city,cert_type"
 			+ ",cert,birthday,user_type,content,status,login_ip,image_path)"
 			+ " values (tab_user_seq.nextval,?,?,'2','张三',?,200,1,'440104201910106119',?,1,'备注','1',?,'')";
 
-	private static final String QUERY_USERNAME = "select count(1) count from tab_user where username=?";
+	private static final String QUERY_USERNAME = "select count(1) count from my12306_tab_user where username=?";
 
 	private static final String QUERY_USER_BY_USERNAME_AND_PASSWORD = "select u.id,u.username,u.password,u.rule,"
 			+ "u.realname,u.sex,u.city c_id,u.cert_type"
 			+ ",u.cert,u.birthday,u.user_type,u.content,u.status,u.login_ip,u.image_path,"
 			+ "c.city,p.province,p.provinceid,ut.content ut_content,ct.content ct_content "
-			+ "from tab_user u,tab_city c,tab_province p,tab_usertype ut,tab_certtype ct"
+			+ "from my12306_tab_user u,my12306_tab_city c,my12306_tab_province p,my12306_tab_usertype ut,my12306_tab_certtype ct"
 			+ " where u.city=c.id and p.provinceid=c.father "
 			+ "and ut.id=u.user_type and ct.id=u.cert_type "
 			+ "and u.username=? and u.password=?";

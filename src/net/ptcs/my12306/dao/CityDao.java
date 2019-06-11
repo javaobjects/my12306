@@ -12,7 +12,7 @@ import net.ptcs.my12306.util.DBUtils_pool;
 
 public class CityDao {
 	
-	private static final String QUERY_CITY_BY_PROVINCEID = "select id,cityid,city from tab_city where father=?";
+	private static final String QUERY_CITY_BY_PROVINCEID = "select id,cityid,city from my12306_tab_city where father=?";
 	/**
 	 * 获取指定省份的所有城市信息
 	 * @param provinceId
