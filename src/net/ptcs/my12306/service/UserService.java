@@ -85,4 +85,8 @@ public class UserService {
 
 		return userDao.queryUserByCondition(username,certtype,cert,usertype,sex);
 	}
+
+	public void saveImage(Integer id, String fileName) {
+		userDao.insertImage(id,fileName);
+	}
 }

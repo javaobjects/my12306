@@ -308,5 +308,26 @@ public class UsersDao {
 
 		return users;
 	}
+
+	public void insertImage(Integer id, String fileName) {
+		Connection conn=null;
+		PreparedStatement stmt=null;
+		
+		try {
+			//这些待更新的数据：真实姓名 性 别   城市 证件类型 证件号码 出生日期 旅客类型 备注
+			String update_user_sql="update my12306_tab_user set image_path=? where id=?";
+			conn=DBUtils_pool.getConnection();
+			stmt=conn.prepareStatement(update_user_sql);
+			stmt.setString(1, fileName);
+			stmt.setInt(2, id);
+			
+			
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtils_pool.release(conn, stmt, null);
+		}
+	}
 	
 }
