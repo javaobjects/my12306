@@ -95,17 +95,12 @@ response.setCharacterEncoding("utf-8");
                           //alert("发送之后："+xmlHttpRequest.readyState);//1,2,3,4
                           if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
                             let span_username = document.querySelector("#span_username");
-                            if (xmlHttpRequest.responseText == "可用") {
-                              // span_username.style.cssText = ""
-                              if(span_username.getAttribute("class")){
-                                span_username.setAttribute("class","");
-                              }
-                              span_username.innerText = xmlHttpRequest.responseText;
+                            if (xmlHttpRequest.responseText.length == 4) {
+                              span_username.setAttribute("class", "");
                             } else {
-                              // span_username.style.cssText = "color:red;"
-                              span_username.setAttribute("class","text_red");
-                              span_username.innerText = xmlHttpRequest.responseText;
+                              span_username.setAttribute("class", "text_red");
                             }
+                            span_username.innerText = xmlHttpRequest.responseText;
                           }
                         };
                         //4.发送请求
@@ -161,7 +156,10 @@ response.setCharacterEncoding("utf-8");
                     <td width="98" height="40" align="left" class="text_cray1">省份：</td>
                     <td width="104" height="35" align="left"><label>
                         <select name="province" class="text_cray" id="province">
-                          <option value="省份" selected="selected">省份</option>
+                          <option selected="selected">--请选择省份--</option>
+                          <c:forEach items="${provinces}" var="p">
+                            <option value="${p.provinceId}">${p.provinceName}</option>
+                          </c:forEach>
                         </select>
                       </label>
                     </td>
@@ -172,25 +170,48 @@ response.setCharacterEncoding("utf-8");
                         </select>
                       </label>
                     </td>
-                    <script src=”http://libs.baidu.com/jquery/2.1.1/jquery.min.js”></script>
                     <script>
-                      $(function(){
-                        $.ajax({
-                          url:"",
-                          method:"",
-                          data:{},
-                          dataType:"json",
-                          success:function(data){
+                      //实例化ajax引擎对象，定义全局变量
+                      let xhr;
+                      document.querySelector("#province").onchange = () => {
+                        //1.获取省份id
+                        let pid = document.querySelector("#province").value;
+                        //2.实例化ajax引擎对象，定义全局变量
+                        xhr = null;
+                        if (window.XMLHttpRequest) {// code for all new browsers
+                          xhr = new XMLHttpRequest();
+                        } else if (window.ActiveXObject) {// code for IE5 and IE6
+                          xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                        } else {
+                          //alert("Your browser does not support XMLHTTP.");
+                        }
+                        //3.调用open方法创建连接
+                        xhr.open("get", "GetCityServlet?pid=" + pid, true);
+                        //4.指定回调函数
+                        xhr.onreadystatechange = () => {//获取服务端响应的信息，把数据取出来放入城市下拉框
+                          if (xhr.readyState == 4) {
+                            if (xhr.status == 200) {
+                              //获取响应的xml文档
+                              let doc = xhr.responseXML;
+                              let city_all = doc.getElementsByTagName("city");//这是一个存放所有city的数组
 
-                          },
-                          error:function(){
-
-                          },
-                          complete:function(){
-
+                              let city_object = document.querySelector("#city");//拿到城市下拉框
+                              city_object.options.length = 0;//将城市下拉框清零
+                              //alert("ok");
+                              for (let i = 0; i < city_all.length; i++) {
+                                let city = city_all[i];//拿到数组中的city对象
+                                let id = city.childNodes[0].firstChild.nodeValue;
+                                let name = city.childNodes[1].firstChild.nodeValue;
+                                //给城市下拉框添加选项，其实就是拿到选项然后给选项赋值
+                                city_object.options[city_object.options.length] = new Option(name, id);
+                              }
+                            }
                           }
-                        })
-                      })
+                        };
+                        //5.发送请求
+                        xhr.send();
+
+                      }
                     </script>
                   </tr>
                   <tr>
