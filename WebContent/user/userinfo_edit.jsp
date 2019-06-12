@@ -63,7 +63,7 @@
 									readonly="readonly" /></td>
 							<td width="230" colspan="-1" rowspan="7" align="center"
 								background="<%=request.getContextPath()%>/images/bg_point_write.gif" class="text_cray1">
-								<img src="<%=request.getContextPath()%>/images/photo_mr.jpg" width="120">
+								<img src="<%=request.getContextPath()%>/photos/${userinfo.imagePath}" width="120">
 								<table width="90%" border="0" cellpadding="0" cellspacing="0">
 									<tr>
 										<td height="15"></td>
