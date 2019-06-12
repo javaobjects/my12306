@@ -105,3 +105,13 @@ index.jsp的framest下的frame的top.jsp路径不对
 		return userDao.queryUserByCondition(username,certtype,cert,usertype,sex);
 	}
 ```
+7. HTTP Status 500 - Unable to process parts as no multi-part configuration has been provided
+
+![](WebContent/images/bug_7.png)
+
+**原因：** 未在Servlet中加 @MultipartConfig
+
+**解决方法：将其加上**
+
+如图：
+![](webContent/images/bug_7_result.png)
