@@ -22,7 +22,8 @@
 			cellspacing="0">
 			<tr>
 				<td colspan="2" background="images/ny_top_img_bg.gif"><img
-					src="images/ny_top_img.gif" width="650" height="108"></td>
+					src="images/ny_top_img.gif" width="650" height="108">
+					</td>
 			</tr>
 			<tr>
 				<td width="75" height="23" bgcolor="#deedf8">&nbsp;</td>
@@ -58,7 +59,12 @@
 										</td>
 									</tr>
 									<tr>
-										<td height="15" colspan="2">&nbsp;</td>
+										<td height="15" colspan="2">
+										  <span class="text_red">
+										<%--      <%=request.getAttribute("message")==null?"":request.getAttribute("message") %> --%>
+										     ${message}
+										  </span>
+										</td>
 									</tr>
 
 								</table>

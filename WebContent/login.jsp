@@ -7,13 +7,13 @@
 <title>12306购票系统</title>
 <link href="<%=request.getContextPath()%>/css/css.css" rel="stylesheet" type="text/css">
 </style>
-<script language="javascript">
+<script>
 	function UserRegistration(){
 		/* location.href = "user_register.jsp"; */
 		location.href = "<%=request.getContextPath()%>/ToRegisterViewServlet" ;
 	}
 </script>
-<script language="javascript">
+<script>
 	function UserLogin(){
 	
 	
@@ -73,7 +73,6 @@ if(cookies!=null)
 			response.sendRedirect("user/index.jsp");
 		}
 	}
-	
 }
 
 
