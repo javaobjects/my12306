@@ -12,7 +12,8 @@ body {
 	background-image: url(../images/bg_point_write.gif);
 }
 -->
-</style></head>
+</style>
+</head>
 <script type="text/JavaScript" src="<%=request.getContextPath()%>/js/common.js"></script>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <form action="" method="get">
