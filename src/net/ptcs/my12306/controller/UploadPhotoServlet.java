@@ -10,13 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import javax.servlet.http.Part;
 
 import net.ptcs.my12306.entity.Users;
 import net.ptcs.my12306.service.UserService;
 
 /**
- * Servlet implementation class UploadPhotoServlet
+* 
+* <p>Title: UploadPhotoServlet</p>  
+* <p>Description: </p>
+* @author xianxian 
+* @date 2019年6月12日
  */
 @WebServlet(description = "负责处理 上传照片的Servlet", urlPatterns = { "/UploadPhotoServlet" })
 @MultipartConfig
@@ -55,7 +60,7 @@ public class UploadPhotoServlet extends HttpServlet {
 			System.out.println("fileName:"+fileName);
 			// 把文件写到指定路径
 			//UUID.randomUUID()+".jpg"
-			part.write(savePath + File.separator + fileName);//   
+			part.write(savePath + File.separator + fileName);
 		
 			//把这个照片路径保存到数据库
 			HttpSession session=request.getSession();
@@ -103,5 +108,4 @@ public class UploadPhotoServlet extends HttpServlet {
 		System.out.println("fileName:"+fileName);
 		return fileName;
 	}
-
 }
