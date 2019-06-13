@@ -5,6 +5,7 @@
 B2C项目。
 
 #### 项目需求
+
 1. 用户注册
 2. 用户登录
 3. 查看个人信息
@@ -42,8 +43,9 @@ Vscode 1.34.0
 ##### 用户后台模块部分
 
 #### 系统结构图
-
+![](WebContent/images/my12306System.png)
 #### 总体架构
+![](WebContent/images/JavaEE应用的标准层次结构.png)
 
 #### 技术选型
 
@@ -91,8 +93,7 @@ Vscode 1.34.0
 | id | number(11)    | not null  | id (主键)  |  
 | content   | varchar2(20)   | not null | 证件类型(1二代身份证2港澳通行证3台湾通行证4护照)| 
 
-#### 总体架构
-![](WebContent/images/JavaEE应用的标准层次结构.png)
+
 
 
 项目所用技术：Servlet、单例模式
