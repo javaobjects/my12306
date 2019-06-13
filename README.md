@@ -51,21 +51,45 @@ Vscode 1.34.0
 ##### my12306_tab_user
 |列名|数据类型|可否为空|说明|
 | -- | -- | -- | -- |
-| id | number(11)    | not null  | id   |  
-| username   | VARCHAR2(30)   | not null | 用户名   | 
-| password   | VARCHAR2(50)   | not null | 密码   |  
-| rule   | VARCHAR2(2)  | not null | 权限(1 管理员 2 普通用户) |
-| realname   | VARCHAR2(50)   | not null | 真实姓名   |  
-| sex   | CHAR(1)    | not null | 性别(1 男 2 女)   |  
-| city   | NUMBER(11)    | not null | 城市信息id值   |  
-| cert_type   | NUMBER(11)    | not null | 证件类型(1二代身份证2港澳通行证3台湾通行证4护照)   |  
-| cert   | VARCHAR2(50)    | not null | 证件号码   |  
-| birthday   | DATE   | not null | 生日   |  
-| user_type   | NUMBER(11)   | not null | 旅客类型(1成人2儿童3学生4残疾军人、伤残人民警察)   |  
-| content   | VARCHAR2(3000)    | null   | 备注信息   |  
-| status   | CHAR(1)   | not null | 用户状态(0 无效 1 有效)   | 
-| login_ip   | VARCHAR2(50)   | not null   | 登陆IP   |  
-| image_path   | VARCHAR2(200)    |  not null | 用户头像路径   |   
+| id | number(11)    | not null  | id(Parimary主键)  |  
+| username   | varchar2(30)   | not null | 用户名(Unique唯一)   | 
+| password   | varchar2(50)   | not null | 密码   |  
+| rule   | varchar2(2)  | not null | 权限(1 管理员 2 普通用户) |
+| realname   | varchar2(50)   | not null | 真实姓名   |  
+| sex   | char(1)    | not null | 性别(1 男 2 女)   |  
+| city   | number(11)    | not null | 城市信息id值((Foreign外键my12306_tab_city))   |  
+| cert_type   | number(11)    | not null | 证件类型(1二代身份证2港澳通行证3台湾通行证4护照)(Foreign外键my12306_tab_certtype)   |  
+| cert   | varchar2(50)    | not null | 证件号码   |  
+| birthday   | date   | not null | 生日   |  
+| user_type   | number(11)   | not null | 旅客类型(1成人2儿童3学生4残疾军人、伤残人民警察)((Foreign外键my12306_tab_usertype))   |  
+| content   | varchar2(3000)    | null   | 备注信息   |  
+| status   | char(1)   | not null | 用户状态(0 无效 1 有效)   | 
+| login_ip   | varchar2(50)   | not null   | 登陆IP   |  
+| image_path   | varchar2(200)    |  not null | 用户头像路径   |   
+
+##### my12306_tab_usertype
+|列名|数据类型|可否为空|说明|
+| -- | -- | -- | -- |
+| id | number(11)    | not null  | id (主键)  |  
+| content   | varchar2(40)   | not null | 旅客类型(1成人2儿童3学生4残疾军人、伤残人民警察)    | 
+##### my12306_tab_province
+|列名|数据类型|可否为空|说明|
+| -- | -- | -- | -- |
+| id | number(11) | not null  | id (主键)  |  
+| provinceid   | varchar2(6)   | not null | 省份标识   |
+| province | varchar2(40) | not null  | 省份名称  |  
+##### my12306_tab_city
+|列名|数据类型|可否为空|说明|
+| -- | -- | -- | -- |
+| id | number(11) | not null  | id (主键)  |  
+| cityid   | varchar2(6)   | not null | 城市标识   |
+| city | varchar2(50) | not null  | 城市名称  |  
+| father | varchar2(6) | not null  | 省份标识  |  
+#### my12306_tab_certtype
+|列名|数据类型|可否为空|说明|
+| -- | -- | -- | -- |
+| id | number(11)    | not null  | id (主键)  |  
+| content   | varchar2(20)   | not null | 证件类型(1二代身份证2港澳通行证3台湾通行证4护照)| 
 
 #### 总体架构
 ![](WebContent/images/JavaEE应用的标准层次结构.png)
