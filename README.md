@@ -44,6 +44,7 @@ Vscode 1.34.0
 
 #### 系统结构图
 ![](WebContent/images/my12306System.png)
+![](WebContent/images/my12306System2.png)
 #### 总体架构
 ![](WebContent/images/JavaEE应用的标准层次结构.png)
 
