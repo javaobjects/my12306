@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
 		String code = request.getParameter("code");
 		String auto = request.getParameter("auto_login");//获取用户是否自动登录的复选框的值
 		
+		System.out.println(auto);
 
 		//2、服务端非空校验
 		StringBuffer sb = new StringBuffer();
@@ -79,8 +80,8 @@ public class LoginServlet extends HttpServlet {
 					{
 						//写Cookie的套路：先new一个cookie，然后调用response的addCookie方法就可以写cookie了
 						Cookie username_cookie=new Cookie("username", URLEncoder.encode(username, "utf-8"));
-						username_cookie.setMaxAge(7*24*60*60);
-						username_cookie.setPath(request.getContextPath()+"/");
+						username_cookie.setMaxAge(7*24*60*60);//过期时间为一周（备注：值为-1会话级cookie关闭浏览器失效 值为 0不记录cookie）
+						username_cookie.setPath(request.getContextPath()+"/");//设置cookie到当前工程的路径
 						
 						Cookie password_cookie=new Cookie("password",Md5Utils.md5(password));
 						password_cookie.setMaxAge(7*24*60*60);

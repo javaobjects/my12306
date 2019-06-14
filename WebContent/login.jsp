@@ -74,9 +74,6 @@ if(cookies!=null)
 		}
 	}
 }
-
-
-
 %>
 <%
 String message = request.getParameter("message");
@@ -164,7 +161,7 @@ if(message != null){
         <td>&nbsp;</td>
         <td valign="bottom"><table width="100%" border="0" cellspacing="0">
           <tr>
-            <td width="26" align="left"><input name="checkbox" type="checkbox" value="checkbox" style=" margin:0 auto;"/></td>
+            <td width="26" align="left"><input name="auto_Login" type="checkbox" value="auto" style=" margin:0 auto;"/></td>
             <td width="170"><img src="<%=request.getContextPath()%>/images/text_zddl.gif" width="60" height="18"></td>
           </tr>
         </table></td>
