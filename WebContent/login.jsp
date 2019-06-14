@@ -78,20 +78,21 @@ if(message != null){
 	alert("<%=message%>");
 	</script>
 <% }%>
-
-
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
  <form name="form1" method="post" action="<%=request.getContextPath()%>/LoginServlet" id="loginForm">
    <table width="933" border="0" align="center" cellpadding="0" cellspacing="0" style="margin:120px;">
   <tr>
-    <td height="412" valign="top" background="<%=request.getContextPath()%>/images/bg_img1.jpg"><table height="300" border="0" cellspacing="0">
+    <td height="412" valign="top" background="<%=request.getContextPath()%>/images/bg_img1.jpg">
+    <table height="300" border="0" cellspacing="0">
       <tr>
         <td width="538">&nbsp;</td>
         <td height="130" colspan="6">&nbsp;</td>
         </tr>
       <tr>
         <td rowspan="9">&nbsp;</td>
-        <td width="98" height="20" align="right"><img src="<%=request.getContextPath()%>/images/text_yh.gif" width="60" height="18"></td>
+        <td width="98" height="20" align="right">
+        	<img src="<%=request.getContextPath()%>/images/text_yh.gif" width="60" height="18">
+       	</td>
         <td width="16">&nbsp;</td>
         <td width="136">
         <input name="username" type="text" id="textfield" size="18" />
@@ -117,7 +118,9 @@ if(message != null){
         <td>&nbsp;</td>
       </tr>
       <tr>
-        <td height="20" align="right"><img src="<%=request.getContextPath()%>/images/text_password.gif" width="60" height="18"></td>
+        <td height="20" align="right">
+        	<img src="<%=request.getContextPath()%>/images/text_password.gif" width="60" height="18">
+       	</td>
         <td>&nbsp;</td>
         <td><input name="password" type="text" id="textfield2" size="18" /></td>
         <td>&nbsp;</td>
@@ -133,14 +136,19 @@ if(message != null){
         <td>&nbsp;</td>
       </tr>
       <tr>
-        <td height="20" align="right"><img src="<%=request.getContextPath()%>/images/text_yzm.gif" width="60" height="18"></td>
+        <td height="20" align="right">
+        	<img src="<%=request.getContextPath()%>/images/text_yzm.gif" width="60" height="18">
+       	</td>
         <td>&nbsp;</td>
         <td><input name="code" type="text" id="textfield3" size="18" /></td>
         <td>
-        <span class="text_cray1">
-        <img src="<%=request.getContextPath()%>/ValidateCodeServlet" alt="" height="20" id="login_image_code" onclick="refresh()"/>
-        </span></td>
-        <td><img src="<%=request.getContextPath()%>/images/text_sx.gif" width="32" height="18" onclick="refresh()" ></td>
+	        <span class="text_cray1">
+	        	<img src="<%=request.getContextPath()%>/ValidateCodeServlet" alt="" height="20" id="login_image_code" onclick="refresh()"/>
+	        </span>
+        </td>
+        <td>
+        	<img src="<%=request.getContextPath()%>/images/text_sx.gif" width="32" height="18" onclick="refresh()" style="cursor:pointer;">
+       	</td>
         <td align="left">&nbsp;</td>
       </tr>
       <script>
@@ -154,9 +162,12 @@ if(message != null){
         <td valign="bottom"><table width="100%" border="0" cellspacing="0">
           <tr>
             <td width="26" align="left"><input name="auto_Login" type="checkbox" value="auto" style=" margin:0 auto;"/></td>
-            <td width="170"><img src="<%=request.getContextPath()%>/images/text_zddl.gif" width="60" height="18"></td>
+            <td width="170">
+            	<img src="<%=request.getContextPath()%>/images/text_zddl.gif" width="60" height="18">
+           	</td>
           </tr>
-        </table></td>
+        </table>
+        </td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>

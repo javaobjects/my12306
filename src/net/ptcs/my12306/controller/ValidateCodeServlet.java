@@ -32,22 +32,8 @@ public class ValidateCodeServlet extends HttpServlet {
 	private static final int HEIGHT = 20;
 	private static final int LENGTH = 4;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// 设置响应报头信息
 		response.setHeader("Pragma", "No-cache");
@@ -111,6 +97,4 @@ public class ValidateCodeServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-       
-
 }
