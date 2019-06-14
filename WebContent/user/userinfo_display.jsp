@@ -8,10 +8,7 @@
 <link href="<%=request.getContextPath()%>/css/css.css" rel="stylesheet" type="text/css">
 <script language="javascript">
 	function UpdateInfo(){
-	
-	
-	window.location.href ="<%=request.getContextPath()%>/ToUpdateUserServlet";
-	
+		window.location.href ="<%=request.getContextPath()%>/ToUpdateUserServlet";
 	}
 </script>
 <%
@@ -47,7 +44,6 @@ Users user = (Users)request.getAttribute("userinfo");
           <tr>
             <td height="10" colspan="4" ></td>
           </tr>
-          
           <tr>
             <td width="20" height="40" align="center" class="text_red">*</td>
             <td width="100" height="40" align="left" class="text_cray1">登录名：</td>

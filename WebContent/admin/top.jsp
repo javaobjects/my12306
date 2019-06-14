@@ -7,7 +7,7 @@
 <title>普通用户</title>
 <link href="<%=request.getContextPath()%>/css/css.css" rel="stylesheet" type="text/css">
 </head>
-<script type="text/JavaScript" src="<%=request.getContextPath()%>/js/common.js"></script>
+<%-- <script type="text/JavaScript" src="<%=request.getContextPath()%>/js/common.js"></script> --%>
 <body class="topbody">
 <form action="" method="get">
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -28,7 +28,6 @@
     <td width="64" align="left" valign="top" bgcolor="#deedf8"><a href="<%=request.getContextPath()%>/ExitServlet" target="_blank" class="cray">退出</a></td>
   </tr>
 </table>
-
 </form>
 
 </body>

@@ -189,6 +189,6 @@
 </table>
 </form>
 
-<script type="text/JavaScript" src="<%=request.getContextPath()%>/js/common.js"></script>
+<%-- <script type="text/JavaScript" src="<%=request.getContextPath()%>/js/common.js"></script> --%>
 </body>
 </html>

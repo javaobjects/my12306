@@ -14,7 +14,7 @@ body {
 -->
 </style>
 </head>
-<script type="text/JavaScript" src="<%=request.getContextPath()%>/js/common.js"></script>
+<%-- <script type="text/JavaScript" src="<%=request.getContextPath()%>/js/common.js"></script> --%>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 <form action="" method="get">
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
