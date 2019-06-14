@@ -6,19 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>12306购票系统</title>
 <link href="<%=request.getContextPath()%>/css/css.css" rel="stylesheet" type="text/css">
-</style>
 <script>
 	function UserRegistration(){
-		/* location.href = "user_register.jsp"; */
 		location.href = "<%=request.getContextPath()%>/ToRegisterViewServlet" ;
 	}
 </script>
 <script>
 	function UserLogin(){
-	
-	
-	document.getElementById("loginForm").submit();
-	
+		document.getElementById("loginForm").submit();
 	}
 </script>
 <style type="text/css">
@@ -76,14 +71,11 @@ if(cookies!=null)
 }
 %>
 <%
-String message = request.getParameter("message");
-
+String message = (String) request.getAttribute("message");
 if(message != null){
 	%>
 	<script>
-	window.onload = funciton(){
-		alert("<%=message%>");
-	}
+	alert("<%=message%>");
 	</script>
 <% }%>
 

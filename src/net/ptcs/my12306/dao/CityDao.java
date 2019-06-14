@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.ptcs.my12306.entity.City;
-import net.ptcs.my12306.entity.Province;
 import net.ptcs.my12306.util.DBUtils_pool;
 
 public class CityDao {
