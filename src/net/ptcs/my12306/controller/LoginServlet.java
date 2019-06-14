@@ -32,8 +32,6 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String code = request.getParameter("code");
 		String auto = request.getParameter("auto_Login");//获取用户是否自动登录的复选框的值
-		
-		System.out.println("auto:"+auto);
 
 		//2、服务端非空校验
 		StringBuffer sb = new StringBuffer();
