@@ -89,6 +89,9 @@ if(message != null){
 
 
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<script>
+console.info("test");
+</script>
  <form name="form1" method="post" action="<%=request.getContextPath()%>/LoginServlet" id="loginForm">
    <table width="933" border="0" align="center" cellpadding="0" cellspacing="0" style="margin:120px;">
   <tr>
