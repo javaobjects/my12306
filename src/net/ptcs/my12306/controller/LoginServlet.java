@@ -31,9 +31,9 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String code = request.getParameter("code");
-		String auto = request.getParameter("auto_login");//获取用户是否自动登录的复选框的值
+		String auto = request.getParameter("auto_Login");//获取用户是否自动登录的复选框的值
 		
-		System.out.println(auto);
+		System.out.println("auto:"+auto);
 
 		//2、服务端非空校验
 		StringBuffer sb = new StringBuffer();
@@ -41,10 +41,14 @@ public class LoginServlet extends HttpServlet {
 			sb.append("用户名为空");
 		}
 		if(password == null || "".equals(password.trim())) {
-			sb.append("密码为空");
+			if(sb.length() == 0) {//此处是为咯让页面显示只有一个提示，而不是一堆提示信息
+				sb.append("密码为空");
+			}
 		}
 		if(code == null || "".equals(password.trim())) {
-			sb.append("验证码为空");
+			if(sb.length() == 0) {
+				sb.append("验证码为空");
+			}
 		}
 		if(sb.length() > 0) {
 			request.setAttribute("login_message", sb.toString());

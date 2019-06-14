@@ -113,7 +113,7 @@ console.info("test");
         <%=login_message%>
         <% }
         %> --%>
-        ${login_message}
+        <span class="text_red">${login_message}</span>
         </td>
         <td width="55">&nbsp;</td>
         <td width="44">&nbsp;</td>
