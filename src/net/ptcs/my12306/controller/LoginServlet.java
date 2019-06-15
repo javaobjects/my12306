@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 				 */
 				UserService service = UserService.getInstance();
 				
-				Users user = service.login(username,password);
+				Users user = service.login(username,Md5Utils.md5(password));
 				System.out.println("user:67line " + user);
 				if(user == null) {
 					//登录失败

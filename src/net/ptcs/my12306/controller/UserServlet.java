@@ -46,7 +46,6 @@ public class UserServlet extends HttpServlet {
 		if(sb.length() > 0) {
 			//如果校验不通过，那么返回注册页面，让用户再注册一次
 			request.setAttribute("message", "必填信息为空，请重新注册");
-//			request.getRequestDispatcher("/user_register.jsp").forward(request, response);
 			request.getRequestDispatcher("/ToRegisterViewServlet").forward(request, response);
 		}else {
 			//3.调用底层service的注册方法添加用户到数据库
@@ -56,7 +55,6 @@ public class UserServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 			UserService userService=UserService.getInstance();
 			
 			Users user = new Users(request.getParameter("username"), request.getParameter("password"), 
@@ -74,10 +72,8 @@ public class UserServlet extends HttpServlet {
 				request.setAttribute("message", "用户名已被占用");
 //				request.getRequestDispatcher("/user_register.jsp").forward(request, response);
 				request.getRequestDispatcher("/ToRegisterViewServlet").forward(request, response);
-		
 			}else
 			{
-
 				if(userService.register(user))
 				{
 					//System.out.println("register success");
