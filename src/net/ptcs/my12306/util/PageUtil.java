@@ -6,9 +6,11 @@ import java.util.List;
 import net.ptcs.my12306.entity.Users;
 
 /**
- * 分页工具类
- * @author xianxian
- *
+ * 
+* <p>Title: PageUtil</p>  
+* <p>Description: 分页工具类</p>  
+* @author xianxian 
+* @date 2019年6月18日
  */
 public class PageUtil {
 	//需要传给我的数据
