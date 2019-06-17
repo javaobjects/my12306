@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.ptcs.my12306.entity.CertType;
+import net.ptcs.my12306.entity.City;
+import net.ptcs.my12306.entity.UserType;
 import net.ptcs.my12306.entity.Users;
 import net.ptcs.my12306.service.UserService;
 
@@ -34,14 +37,24 @@ public class UserServlet extends HttpServlet {
 			stmt.setString(5, user.getLoginIp());
 		 */
 		//1.获取数据
-		String username=request.getParameter("username");
-		String password=request.getParameter("password");
-		String confirm_password=request.getParameter("confirm_password");
-		String sex=request.getParameter("sex");
-		String birthday_date=request.getParameter("birthday");
+		String username=request.getParameter("username");//用户名
+		String password=request.getParameter("password");//密码
+		String confirm_password=request.getParameter("confirm_password");//确认密码
+		String real_name = request.getParameter("real_name");//真实姓名
+		String sex=request.getParameter("sex");//性别
+		String province = request.getParameter("province");//省份
+		String city = request.getParameter("city");//城市
+		String cert_type = request.getParameter("cert_type");//证件类型
+		String cert = request.getParameter("cert");//证件号码
+		String birthday_date=request.getParameter("birthday");//出生日期
+		String user_type = request.getParameter("user_type");//旅客类型
+		String content = request.getParameter("content");//备注
+		String agree = request.getParameter("agree");//是否同意on/null 被选中/非选
+
 		
+		System.out.println("line51 agree:"+agree);
 		//2.数据的非空校验和合法性校验
-		StringBuffer sb = validateRegisterForm(username, password, confirm_password);
+		StringBuffer sb = validateRegisterForm(username, password, confirm_password,agree);
 		
 		if(sb.length() > 0) {
 			//如果校验不通过，那么返回注册页面，让用户再注册一次
@@ -56,9 +69,18 @@ public class UserServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			UserService userService=UserService.getInstance();
-			
+
 			Users user = new Users(request.getParameter("username"), request.getParameter("password"), 
 					request.getParameter("sex").charAt(0), birthday);
+			
+			
+//			Integer id, String username, String password, String rule,
+//			String realname, Character sex, City city, CertType certtype,
+//			String cert, Date birthday, UserType usertype, String content,
+//			Character status, String loginIp, String imagePath   String.charAt(Integer.parseInt(sex))  cert_type user_type 1
+			
+//			Users user = new Users(null,username,password,"2",real_name,null,
+//					new City().setCityId(city),null,cert,birthday,null,content,null,request.getRemoteAddr(),null);//此处应该将所有的数据插入
 			user.setLoginIp(request.getRemoteAddr());
 			//服务端校验通过之后，注册方法调用之前，应该先判断用户名是否已经存在
 			/*
@@ -112,8 +134,7 @@ public class UserServlet extends HttpServlet {
 	 * @param confirm_password
 	 * @return 
 	 */
-	private StringBuffer validateRegisterForm(String username, String password,
-			String confirm_password) {
+	private StringBuffer validateRegisterForm(String username, String password,String confirm_password,String agree) {
 		StringBuffer validate_message=new StringBuffer();
 		if(username==null||"".equals(username))
 		{
@@ -126,6 +147,9 @@ public class UserServlet extends HttpServlet {
 		if(!password.equals(confirm_password))
 		{
 			validate_message.append("两次密码输入不一致");
+		}
+		if(agree == null) {
+			validate_message.append("请阅读《中国铁路客户服务中心网站服务条款》并勾选");
 		}
 		if(validate_message.length()>0)
 		{

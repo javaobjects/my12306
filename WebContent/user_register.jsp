@@ -244,7 +244,7 @@
 										</td>
 										<td width="98" height="40" align="left" class="text_cray1">证件类型：</td>
 										<td height="35" colspan="3" align="left">
-											<select class="text_cray" name="loginUserDTO.id_type_code" id="cardType">
+											<select class="text_cray" name="cert_type" id="cardType">
 												<option value="1"><span>二代身份证</span>
 												</option>
 												<option value="2"><span>港澳通行证</span>
@@ -301,7 +301,8 @@
 										<td align="center">&nbsp;</td>
 										<td height="30" align="left" class="text_cray1"></td>
 										<td height="50" colspan="3" align="left" valign="middle" class="text_cray1">
-											<input type="checkbox" class="check" id="checkAgree" />
+											<input type="checkbox" class="check" id="checkAgree" name="agree"/>
+											<!--此处若不给value值则被选择的状态下给后端传值则为on（其实我也不知道这玩意从哪里冒出来的）非选择状态传null-->
 											我已阅读并同意遵守
 											 <!-- <a href="/otn/regist/rule;jsessionid=FA97B306AACF75E37DD4D10CFD59994A" class="ft14" target="_blank" shape="rect"> -->
 											 <a href="" class="ft14"  shape="rect">
