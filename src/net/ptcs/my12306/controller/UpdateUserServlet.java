@@ -81,8 +81,5 @@ public class UpdateUserServlet extends HttpServlet {
 			PrintWriter pw = response.getWriter();
 			pw.println("<script>alert('更新失败');</script>");
 		}
-		
-		
-		
 	}
 }

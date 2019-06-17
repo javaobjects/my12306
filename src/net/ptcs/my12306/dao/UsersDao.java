@@ -172,7 +172,7 @@ public class UsersDao {
 		
 		try {
 			//这些待更新的数据：真实姓名 性 别   城市 证件类型 证件号码 出生日期 旅客类型 备注
-			String update_user_sql="update tab_user set realname=?,sex=?,city=?,cert_type=?,cert=?,"
+			String update_user_sql="update my12306_tab_user set realname=?,sex=?,city=?,cert_type=?,cert=?,"
 					+ "birthday=?,user_type=?,content=? where id=?";
 			conn=DBUtils_pool.getConnection();
 			stmt=conn.prepareStatement(update_user_sql);
