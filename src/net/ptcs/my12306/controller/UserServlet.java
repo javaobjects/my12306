@@ -31,13 +31,6 @@ public class UserServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		/*
-		 stmt.setString(1, user.getUsername());
-			stmt.setString(2, user.getPassword());
-			stmt.setString(3, user.getSex() + "");
-			stmt.setDate(4, new java.sql.Date(user.getBirthday().getTime()));
-			stmt.setString(5, user.getLoginIp());
-		 */
 		//1.获取数据
 		String username=request.getParameter("username");//用户名
 		String password=request.getParameter("password");//密码
@@ -53,8 +46,6 @@ public class UserServlet extends HttpServlet {
 		String content = request.getParameter("content");//备注
 		String agree = request.getParameter("agree");//是否同意on/null 被选中/非选
 
-//		System.out.println("sex:"+sex.charAt(0));
-		System.out.println("line51 agree:"+agree);
 		//2.数据的非空校验和合法性校验
 		StringBuffer sb = validateRegisterForm(username, password, confirm_password,agree);
 		
@@ -72,10 +63,6 @@ public class UserServlet extends HttpServlet {
 			}
 			UserService userService=UserService.getInstance();
 
-//			Users user = new Users(request.getParameter("username"), request.getParameter("password"), 
-//					request.getParameter("sex").charAt(0), birthday);
-			
-			
 //			Integer id, String username, String password, String rule,
 //			String realname, Character sex, City city, CertType certtype,
 //			String cert, Date birthday, UserType usertype, String content,
@@ -83,7 +70,7 @@ public class UserServlet extends HttpServlet {
 			
 //			Users user = new Users(null,username,password,"2",real_name,null,
 //					new City().setCityId(city),null,cert,birthday,null,content,null,request.getRemoteAddr(),null);//此处应该将所有的数据插入
-	
+			
 			Users user = new Users();
 			user.setUsername(username);//用户名
 			user.setPassword(Md5Utils.md5(password));//密码
@@ -95,8 +82,7 @@ public class UserServlet extends HttpServlet {
 			c.setCityId(city);
 			user.setCity(c);//获取城市 String 转 引用类型
 			
-			user.setCerttype(new CertType(Integer.parseInt(cert_type), null));//证件类型
-			
+			user.setCerttype(new CertType(Integer.parseInt(cert_type), null));//证件类型 String 转 引用类型
 			
 			user.setCert(cert);//证件号码
 			
@@ -106,14 +92,10 @@ public class UserServlet extends HttpServlet {
 				e.printStackTrace();
 			}//出身日期 String 转 date
 			
-			user.setUsertype(new UserType(Integer.parseInt(user_type), null));//旅客类型
-			
-			
+			user.setUsertype(new UserType(Integer.parseInt(user_type), null));//旅客类型 String 转 引用类型
 			
 			user.setContent(content);//备注
 			user.setLoginIp(request.getRemoteAddr());//设置IP
-			
-			
 			
 			//服务端校验通过之后，注册方法调用之前，应该先判断用户名是否已经存在
 			/*
