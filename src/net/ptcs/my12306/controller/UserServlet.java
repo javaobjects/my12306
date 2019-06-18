@@ -1,6 +1,7 @@
 package net.ptcs.my12306.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,6 +16,7 @@ import net.ptcs.my12306.entity.City;
 import net.ptcs.my12306.entity.UserType;
 import net.ptcs.my12306.entity.Users;
 import net.ptcs.my12306.service.UserService;
+import net.ptcs.my12306.util.Md5Utils;
 
 /**
  * Servlet implementation class UserServlet
@@ -51,7 +53,7 @@ public class UserServlet extends HttpServlet {
 		String content = request.getParameter("content");//备注
 		String agree = request.getParameter("agree");//是否同意on/null 被选中/非选
 
-		
+//		System.out.println("sex:"+sex.charAt(0));
 		System.out.println("line51 agree:"+agree);
 		//2.数据的非空校验和合法性校验
 		StringBuffer sb = validateRegisterForm(username, password, confirm_password,agree);
@@ -70,8 +72,8 @@ public class UserServlet extends HttpServlet {
 			}
 			UserService userService=UserService.getInstance();
 
-			Users user = new Users(request.getParameter("username"), request.getParameter("password"), 
-					request.getParameter("sex").charAt(0), birthday);
+//			Users user = new Users(request.getParameter("username"), request.getParameter("password"), 
+//					request.getParameter("sex").charAt(0), birthday);
 			
 			
 //			Integer id, String username, String password, String rule,
@@ -81,7 +83,38 @@ public class UserServlet extends HttpServlet {
 			
 //			Users user = new Users(null,username,password,"2",real_name,null,
 //					new City().setCityId(city),null,cert,birthday,null,content,null,request.getRemoteAddr(),null);//此处应该将所有的数据插入
-			user.setLoginIp(request.getRemoteAddr());
+	
+			Users user = new Users();
+			user.setUsername(username);//用户名
+			user.setPassword(Md5Utils.md5(password));//密码
+			user.setRule("2");//用户类型 2为普通用户
+			user.setRealname(real_name);//真实姓名
+			user.setSex(sex.charAt(0));//性别 String 转 Character
+			
+			City c = new City();
+			c.setCityId(city);
+			user.setCity(c);//获取城市 String 转 引用类型
+			
+			user.setCerttype(new CertType(Integer.parseInt(cert_type), null));//证件类型
+			
+			
+			user.setCert(cert);//证件号码
+			
+			try {
+				user.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday_date));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}//出身日期 String 转 date
+			
+			user.setUsertype(new UserType(Integer.parseInt(user_type), null));//旅客类型
+			
+			
+			
+			user.setContent(content);//备注
+			user.setLoginIp(request.getRemoteAddr());//设置IP
+			
+			
+			
 			//服务端校验通过之后，注册方法调用之前，应该先判断用户名是否已经存在
 			/*
 			 * 则需要定义判断用户名是否已经存在的方法，如果存在则返回注册页面，提示用户名已经存在，
