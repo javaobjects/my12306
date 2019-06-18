@@ -25,7 +25,9 @@
     欢迎您，${sessionScope.user.username }
     <%-- <%=((Users)session.getAttribute("user")).getUsername() %> --%>
     </td>
-    <td width="64" align="left" valign="top" bgcolor="#deedf8"><a href="<%=request.getContextPath()%>/ExitServlet" target="_blank" class="cray">退出</a></td>
+    <td width="64" align="left" valign="top" bgcolor="#deedf8">
+    	<a href="<%=request.getContextPath()%>/ExitServlet" class="cray" target="_parent">退出</a>
+   	</td>
   </tr>
 </table>
 </form>
