@@ -37,9 +37,7 @@ public class AdminManageUserServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		String operator = request.getParameter("operator");
-		
-		System.out.println(operator);
-		
+
 		if("toQueryUserView".equals(operator)) {
 			toQueryUserView(request,response);
 		}else if("queryUser".equals(operator)) {
@@ -188,15 +186,12 @@ public class AdminManageUserServlet extends HttpServlet {
 	private void queryUser(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("--------------------");
 		//获取表单数据
-		String username=request.getParameter("username");
-		
-		String cert_type=request.getParameter("cert_type");
-		String cert=request.getParameter("cert");
-		
-		String user_type=request.getParameter("user_type");
-		String sex=request.getParameter("sex");
-		String pageCount=request.getParameter("pageCount");
-		System.out.println("======================");
+		String username=request.getParameter("username");//用户名
+		String sex=request.getParameter("sex");//性别
+		String cert_type=request.getParameter("cert_type");//证件类型
+		String cert=request.getParameter("cert");//证件号码
+		String user_type=request.getParameter("user_type");//旅客类型
+		String pageCount=request.getParameter("pageCount");//每页显示多少条数据
 		
 		//怎么查询servlet是不管的，全部交给service，servlet只管调用
 		UserService userService=UserService.getInstance();

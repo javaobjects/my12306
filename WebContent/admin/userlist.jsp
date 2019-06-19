@@ -7,15 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>所有用户管理</title>
 <link href="<%=request.getContextPath()%>/css/css.css" rel="stylesheet" type="text/css">
-<script language="javascript">
+<script>
 	function UserAdd(){
-	
-	
-	window.navigate("UserInfo_Add.html");
-	
+		window.location.href = "UserInfo_Add.html";
 	}
 </script>
-
 <script>
 function selectAllNullorReserve(obj,type){
    if(obj!=null&&obj!=""){
@@ -43,7 +39,7 @@ function selectAllNullorReserve(obj,type){
       }
      }
     }
-   }  
+   }
 }
 </script>
 </head>
@@ -78,7 +74,7 @@ function selectAllNullorReserve(obj,type){
         <td width="5"></td>
         <td width="4%" height="25" align="left" class="text_cray1">姓名</td>
         <td width="11%" align="left" class="text_cray1"><label>
-          <input name="textfield" type="text" class="text_cray" style="width:80px" value="${username}">
+          <input name="username" type="text" class="text_cray" style="width:80px" value="${username}">
         </label></td>
         <td width="6%" align="center" class="text_cray1">性别</td>
         <td width="6%" align="left" class="text_cray1"><label>
@@ -99,7 +95,7 @@ function selectAllNullorReserve(obj,type){
         </label></td>
         <td width="8%" align="center" class="text_cray1">证件号码</td>
         <td width="13%" align="left" class="text_cray1"><label>
-          <input name="textfield2" type="text" class="text_cray" style="width:100px" value="${cert}">
+          <input name="cert" type="text" class="text_cray" style="width:100px" value="${cert}">
         </label></td>
         <td width="8%" align="center" class="text_cray1">旅客类型</td>
         <td width="13%" align="left" class="text_blod"><label>
